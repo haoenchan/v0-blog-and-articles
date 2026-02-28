@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
-  title: 'Your Name - Writer & Thinker',
+  title: 'Haoenchan - Writer & Thinker',
   description: 'Personal blog and articles on design, technology, and ideas that matter.',
   generator: 'v0.app',
   icons: {

@@ -71,26 +71,12 @@ export default function HomePage() {
         </div>
         <div className="mt-8 flex items-center gap-6">
           <a
-            href="https://x.com"
+            href="https://instagram.com/haoenphysics"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            X / Twitter
-          </a>
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            GitHub
-          </a>
-          <a
-            href="mailto:hello@example.com"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Email
+            Instagram
           </a>
         </div>
       </section>
