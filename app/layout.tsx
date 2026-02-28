@@ -36,11 +36,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
-      <body className="font-sans antialiased bg-background text-foreground selection:bg-primary/20 selection:text-primary">
-        <div className="relative flex min-h-svh flex-col overflow-x-hidden">
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <body className="font-sans antialiased">
+        <div className="flex min-h-svh flex-col">
           <SiteHeader />
-          <main className="relative flex-1">{children}</main>
+          <main className="flex-1">{children}</main>
           <SiteFooter />
         </div>
       </body>

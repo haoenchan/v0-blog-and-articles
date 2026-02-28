@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+@custom-variant dark (&:is(.dark *));
 
 :root {
   --background: oklch(0.97 0.005 200);
@@ -73,7 +74,7 @@
   --sidebar-ring: oklch(0.65 0.12 200);
 }
 
-inline {
+@theme inline {
   --font-sans: var(--font-inter), 'Inter', sans-serif;
   --font-serif: var(--font-playfair), 'Playfair Display', 'Georgia', serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
@@ -115,68 +116,11 @@ inline {
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-
-  to {
-    opacity: 1;
+  body {
+    @apply bg-background text-foreground;
   }
-}
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes glow-drift {
-
-  0%,
-  100% {
-    transform: translateX(-50%) translateY(0) scale(1);
-    opacity: 0.6;
-  }
-
-  50% {
-    transform: translateX(-50%) translateY(20px) scale(1.05);
-    opacity: 1;
-  }
-}
-
-@keyframes glow-drift-reverse {
-
-  0%,
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 0.5;
-  }
-
-  50% {
-    transform: translateY(-15px) scale(1.08);
-    opacity: 0.9;
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.6s ease-out both;
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.7s ease-out both;
-}
-
-.animate-glow-drift {
-  animation: glow-drift 8s ease-in-out infinite;
-}
-
-.animate-glow-drift-reverse {
-  animation: glow-drift-reverse 10s ease-in-out infinite;
 }

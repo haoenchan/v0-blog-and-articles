@@ -13,7 +13,7 @@ export const posts: BlogPost[] = [
     slug: "vietas-theorem",
     title: "Vieta's Theorem",
     excerpt:
-      "An introduction to Vieta's Theorem",
+      "An introduction to Vieta's Theorem — connecting the roots of a polynomial to its coefficients through symmetric sums, with worked examples from AMC and USAMO.",
     date: "February 28, 2026",
     readTime: "8 min read",
     category: "Math",
@@ -122,7 +122,7 @@ $$\\frac{S_1}{S_2} = \\frac{-\\frac{2004}{2003}}{\\frac{2004}{2003}} = -1$$
     slug: "oscillations",
     title: "Oscillations",
     excerpt:
-      "Selected problems and solutions from Kevin Zhou's handouts",
+      "Selected problems and solutions from Kevin Zhou's handouts — covering gravitational oscillations, energy methods, normal modes, adiabatic invariants, driven systems, and competition problems.",
     date: "February 28, 2026",
     readTime: "20 min read",
     category: "Physics",
@@ -556,7 +556,7 @@ $$\\boxed{T = 2\\pi\\sqrt{\\frac{L}{g}}}$$`,
     slug: "Sums",
     title: "Sums",
     excerpt:
-      "An introduction to a mathematical notation and some techniques",
+      "An introduction to mathematical notation and techniques — covering sigma notation, evaluating sums, telescopic sums, pi notation, cyclic and symmetric sums, with worked examples from AMC, AIME, and HMMT.",
     date: "February 28, 2026",
     readTime: "20 min read",
     category: "Math",
