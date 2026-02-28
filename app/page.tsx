@@ -46,37 +46,7 @@ export default function HomePage() {
         <RecentPosts posts={recentPosts} />
       </section>
 
-      {/* Divider */}
-      <div className="border-t border-border" />
 
-      {/* About Section */}
-      <section className="py-16">
-        <h2 className="font-serif text-2xl font-bold tracking-tight text-foreground">
-          About
-        </h2>
-        <div className="mt-6 flex flex-col gap-4 text-base leading-relaxed text-muted-foreground">
-          <p>
-            I believe in the power of words to clarify thinking and connect
-            people. My writing explores the intersection of technology,
-            creativity, and the human experience.
-          </p>
-          <p>
-            When I am not writing, you can find me reading, walking without a
-            destination, or working on projects that combine design and code.
-            I am always looking for new perspectives and conversations.
-          </p>
-        </div>
-        <div className="mt-8 flex items-center gap-6">
-          <a
-            href="https://instagram.com/haoenphysics"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Instagram
-          </a>
-        </div>
-      </section>
     </div>
   )
 }
