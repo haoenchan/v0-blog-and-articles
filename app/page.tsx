@@ -11,13 +11,10 @@ export default function HomePage() {
       {/* Hero / Introduction */}
       <section className="py-16 sm:py-24">
         <h1 className="font-serif text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl text-balance">
-          Writer, thinker, <br className="hidden sm:block" />
-          and curious mind.
+          About Me
         </h1>
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-          I write about ideas that fascinate me — from the philosophy of slow
-          thinking to the craft of building in public. This is where I share
-          essays, articles, and reflections.
+          {"Hi! I'm Haoen and I am interested in physics and a bit of math. Here, I will post some of my own articles including my own solutions to some problems and also some handouts."}
         </p>
         <div className="mt-8 flex items-center gap-6">
           <Link
