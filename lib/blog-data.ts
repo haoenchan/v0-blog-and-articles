@@ -119,139 +119,187 @@ $$\\frac{S_1}{S_2} = \\frac{-\\frac{2004}{2003}}{\\frac{2004}{2003}} = -1$$
 **Answers:** $\\dfrac{15}{16}$, $6$, $86$.`,
   },
   {
-    slug: "oscillations-complete-guide",
-    title: "Oscillations: From Punctured Sheets to Adiabatic Invariants",
+    slug: "oscillations",
+    title: "Oscillations",
     excerpt:
-      "A complete guide to advanced oscillation problems. Includes effective potential derivations, massive springs, coupled oscillators, adiabatic invariants, and solutions to selected Physics Olympiad problems.",
+      "Selected problems and solutions from Kevin Zhou's handouts — covering gravitational oscillations, energy methods, normal modes, adiabatic invariants, driven systems, and competition problems.",
     date: "February 28, 2026",
-    readTime: "35 min read",
+    readTime: "20 min read",
     category: "Physics",
     content: `## 1. Hole in an Infinite Sheet
+*Morin 5.13*
 
-**Problem:** A hole of radius $R$ is cut out from an infinite flat sheet with mass per unit area $\\sigma$. Let $L$ be the line perpendicular to the sheet passing through the center. [cite_start]Find the force on a mass $m$ on $L$ at distance $x$ [cite: 13-16].
+A hole of radius $R$ is cut out from an infinite flat sheet with mass per unit area $\\sigma$. Let $L$ be the line perpendicular to the sheet passing through the center of the hole.
 
-**Solution:**
-Consider a ring within the sheet with radius $r$ and thickness $dr$. Its mass is $dM = 2\\pi r \\sigma dr$. [cite_start]By symmetry, only the force component along $L$ survives [cite: 20-21]:
+### (a) Force on mass $m$
 
-$$dF = -\\frac{Gm \\, dM}{x^2 + r^2} \\cos \\theta = -\\frac{Gm(2\\pi r \\sigma dr)}{x^2 + r^2} \\frac{x}{\\sqrt{x^2 + r^2}}$$
+Consider a ring within the sheet with radius $r$ and thickness $dr$. Its mass is $dM = 2\\pi r \\sigma \\, dr$. By symmetry, only the force component along $L$ survives:
 
-[cite_start]Integrating from $R$ to $\\infty$ [cite: 23-24]:
+$$dF = -\\frac{Gm \\, dM}{x^2 + r^2} \\cdot \\frac{x}{\\sqrt{x^2 + r^2}}$$
 
-$$F = -2\\pi Gm\\sigma x \\int_{R}^{\\infty} \\frac{r \\, dr}{(x^2 + r^2)^{3/2}} = -\\frac{2\\pi Gm\\sigma x}{\\sqrt{x^2 + R^2}}$$
+Integrating from $R$ to $\\infty$:
 
-### Limiting Cases
-1.  **Near Field ($x \\ll R$):** $\\sqrt{x^2 + R^2} \\approx R$. The force is linear, $F \\approx -\\frac{2\\pi G \\sigma m}{R} x$. [cite_start]This is Hooke's Law with frequency [cite: 25-28]:
-    $$\\omega = \\sqrt{\\frac{2\\pi G \\sigma}{R}}$$
+$$F = -\\frac{2\\pi G m \\sigma x}{\\sqrt{x^2 + R^2}}$$
 
-2.  **Far Field ($x \\gg R$):** The force approaches a constant $F \\approx -2\\pi Gm\\sigma$. This acts like a uniform acceleration $g_{eff} = 2\\pi G\\sigma$. [cite_start]The period is derived from the fall time [cite: 29-32]:
-    $$T = 4\\sqrt{\\frac{x}{\\pi G\\sigma}}$$
+### (b) Small oscillations ($x \\ll R$)
 
-## 2. Energy: Mass on a Plane
+For $x \\ll R$, we approximate $\\sqrt{x^2 + R^2} \\approx R$, giving Hooke's Law $F \\approx -\\frac{2\\pi G\\sigma}{R} x$:
 
-**Problem:** A mass $M$ moves on a frictionless horizontal plane, connected by a string through a hole to a hanging mass $m$. $M$ moves in a circle of radius $r$. [cite_start]Find the frequency of small oscillations in $r$ [cite: 37-40].
+$$\\omega = \\sqrt{\\frac{2\\pi G\\sigma}{R}}$$
 
-**Solution:**
-Let $r$ be the generalized coordinate. $m$ is at height $-r$.
-**Kinetic Energy:** $M$ has radial speed $\\dot{r}$ and tangential velocity $v_{\\theta} = L/(Mr)$. [cite_start]Mass $m$ has speed $\\dot{r}$ [cite: 42-43]:
-$$K = \\frac{1}{2}(M+m)\\dot{r}^2 + \\frac{L^2}{2Mr^2}$$
+### (c) Large $x$ regime ($x \\gg R$)
 
-[cite_start]**Effective Potential:** Combining gravity ($V=mgr$) and the centrifugal term [cite: 45-47]:
-$$V_{eff}(r) = mgr + \\frac{L^2}{2Mr^2}$$
+The force approaches a constant $g_{\\text{eff}} = 2\\pi G\\sigma$. The time to fall from height $x$ is $t_{\\text{fall}} = \\sqrt{2x/g_{\\text{eff}}}$, and the period is $4 \\times t_{\\text{fall}}$:
 
-[cite_start]**Equilibrium:** Set $V'_{eff}(r_0) = 0$ [cite: 48-49]:
-$$mg - \\frac{L^2}{Mr_0^3} = 0 \\implies \\frac{L^2}{Mr_0^3} = mg$$
+$$T = 4\\sqrt{\\frac{x}{\\pi G\\sigma}}$$
 
-**Frequency:** The effective spring constant is $k_{eff} = V''_{eff}(r_0) = \\frac{3L^2}{Mr_0^4} = \\frac{3mg}{r_0}$. [cite_start]With effective mass $m_{eff} = M+m$, the frequency is [cite: 50-53]:
-$$\\omega = \\sqrt{\\frac{3g}{r_0} \\frac{m}{M+m}}$$
+## 2. Mass on a Plane
+*Cahn*
 
-## 3. Continuous Systems: The Massive Spring
+A particle of mass $M$ moves on a frictionless horizontal plane, connected by a string through a hole to a hanging mass $m$. $M$ moves in a circle of radius $r_0$ while $m$ is stationary. Find the frequency of small oscillations in $r$.
 
-**Problem:** A spring of constant $k$ and mass $m$ is attached to a mass $M$. [cite_start]Find the frequency[cite: 56].
+Using angular momentum $L$ as a conserved quantity, the effective radial potential is:
 
-**Solution:**
-Assume uniform stretching. If $M$ moves at $v_0$, a point on the spring at $x$ moves at $v(x) = v_0(x/L)$.
-[cite_start]**Kinetic Energy of Spring:** Integrating $\\frac{1}{2}(\\rho dx)v(x)^2$ yields $K_{spring} = \\frac{1}{6}mv_0^2$ [cite: 61-62].
-**Total Energy:**
-$$K_{tot} = \\frac{1}{2}Mv_0^2 + \\frac{1}{6}mv_0^2 = \\frac{1}{2}\\left(M+\\frac{m}{3}\\right)v_0^2$$
+$$V_{\\text{eff}}(r) = mgr + \\frac{L^2}{2Mr^2}$$
 
-[cite_start]The effective mass is $M + m/3$, so $\\omega = \\sqrt{k/(M+m/3)}$[cite: 60, 65].
+Setting $V'_{\\text{eff}}(r_0) = 0$ gives equilibrium at $r_0$ where $\\frac{L^2}{Mr_0^3} = mg$. The effective spring constant is $k_{\\text{eff}} = V''_{\\text{eff}}(r_0) = \\frac{3mg}{r_0}$, and the effective mass is $M + m$:
+
+$$\\omega = \\sqrt{\\frac{3g}{r_0} \\cdot \\frac{m}{M+m}}$$
+
+## 3. The Massive Spring
+*Continuous Systems*
+
+A uniform spring of constant $k$ and mass $m$ is attached to a wall and a mass $M$.
+
+### (a) Perturbative limit $m \\ll M$
+
+Assuming uniform stretch, a point at position $x$ along the spring (total length $L$) moves at $v(x) = v_0(x/L)$. Integrating the kinetic energy of the spring:
+
+$$K_{\\text{spring}} = \\frac{1}{6}mv_0^2 \\implies m_{\\text{eff}} = M + \\frac{m}{3}$$
+
+$$\\omega = \\sqrt{\\frac{k}{M + m/3}}$$
+
+### (b) General mass ratio
+
+The full wave equation approach yields the transcendental equation (with $\\alpha = \\sqrt{m/M}$ and $\\omega_0 = \\sqrt{k/M}$):
+
+$$\\tan\\!\\left(\\frac{\\alpha\\omega}{\\omega_0}\\right) = \\frac{\\alpha\\omega_0}{\\omega}$$
 
 ## 4. Coupled Oscillators & Normal Modes
 
-### 4.1 Beats (Morin 4.10)
-Two masses $m$ are connected by three springs. Outer springs have constant $k$, middle spring has $\\kappa \\ll k$.
-**Equations of Motion:**
-[cite_start]$m\\ddot{x}_1 = -kx_1 - \\kappa(x_1 - x_2)$ and $m\\ddot{x}_2 = -kx_2 - \\kappa(x_2 - x_1)$ [cite: 79-81].
+### Beats
+*Morin 4.10*
 
-**Normal Modes:**
-1.  [cite_start]**Center of Mass ($y_1 = x_1 + x_2$):** $\\omega_1 = \\sqrt{k/m}$ [cite: 83-84].
-2.  [cite_start]**Relative ($y_2 = x_1 - x_2$):** $\\omega_2 = \\sqrt{(k+2\\kappa)/m}$ [cite: 88-89].
+Three springs and two equal masses between two walls. Outer springs have constant $k$, middle spring $\\kappa \\ll k$. Initial conditions: $x_1(0) = a$, $x_2(0) = 0$.
 
-[cite_start]If $x_1(0)=a, x_2(0)=0$, the motion exhibits **beats** with frequency $\\epsilon \\approx \\omega_1(\\kappa/2k)$[cite: 93]:
-$$x_1(t) \\approx a \\cos((\\omega+\\epsilon)t) \\cos(\\epsilon t)$$
+Normal coordinates: $y_1 = x_1 + x_2$ (CM mode, $\\omega_1 = \\sqrt{k/m}$) and $y_2 = x_1 - x_2$ (relative mode, $\\omega_2 = \\sqrt{(k+2\\kappa)/m}$). With $\\varepsilon \\approx \\omega_1 \\kappa/(2k)$:
 
-### 4.2 Masses on a Hoop (IPhO 1986)
-$N$ masses $m$ on a hoop connected by springs $k$. [cite_start]Guess a traveling wave $x_j(t) = A e^{i(\\omega t + j\\phi)}$ [cite: 96-98].
-Boundary condition $x_{N+1} = x_1$ implies $\\phi_n = 2\\pi n / N$.
-[cite_start]The dispersion relation is derived as[cite: 104]:
-$$\\omega_n = 2\\sqrt{\\frac{k}{m}} \\left| \\sin\\left(\\frac{\\pi n}{N}\\right) \\right|$$
+$$x_1(t) \\approx a\\cos((\\omega + \\varepsilon)t)\\cos(\\varepsilon t)$$
+
+Energy sloshes between the two masses at the slow beat frequency $\\varepsilon$.
+
+### Masses on a Hoop
+*IPhO 1986*
+
+$N$ identical masses $m$ on a circular hoop connected by springs $k$. Using a traveling wave ansatz $x_j = Ae^{i(\\omega t + j\\varphi)}$ with periodic boundary condition $\\varphi_n = 2\\pi n/N$:
+
+$$\\omega_n = 2\\sqrt{\\frac{k}{m}}\\left|\\sin\\frac{\\pi n}{N}\\right|$$
 
 ## 5. Adiabatic Invariants
 
-**Problem:** A pendulum's length slowly changes from $L$ to $L/2$. [cite_start]Find the new amplitude [cite: 106-107].
+A pendulum's length slowly changes from $L$ to $L/2$. How does the amplitude $\\theta_0$ change?
 
-**Solution:**
-The action $J = \\oint p \\, dq$ is an adiabatic invariant. [cite_start]$J \\propto E/\\omega$ [cite: 111-115].
-Since $E \\propto mgL\\theta_0^2$ and $\\omega \\propto \\sqrt{g/L}$:
-$$\\frac{mgL\\theta_0^2}{\sqrt{g/L}} = \\text{const} \\implies \\theta_0 \\propto L^{-3/4}$$
-[cite_start]If $L \\to L/2$, $\\theta_{new} = \\theta_0 (2)^{3/4} \\approx 1.68 \\theta_0$ [cite: 116-118].
+The action $J = \\oint p \\, dq$ is an adiabatic invariant. For a pendulum, $J \\propto E/\\omega$. With $E \\propto mgL\\theta_0^2$ and $\\omega \\propto \\sqrt{g/L}$:
 
-## 6. Buoyancy
+$$\\theta_0^2 \\cdot L^{3/2} = \\text{constant} \\implies \\theta_0 \\propto L^{-3/4}$$
 
-**Glacier:** A cube of side $L$ and density $\\rho_i$ floats in water $\\rho_w$. Restoring force is $-\\rho_w g L^2 x$.
-[cite_start]$$\\omega = \\sqrt{\\frac{\\rho_w g}{\\rho_i L}}$$[cite: 121, 128].
+If $L \\to L/2$, the new amplitude is $\\theta_{\\text{new}} = \\theta_0 \\cdot 2^{3/4} \\approx 1.68\\,\\theta_0$. Counterintuitively — and contrary to Poe's *The Pit and the Pendulum* — shortening the pendulum **increases** the amplitude.
 
-**Ball:** Radius $R$, half-submerged. $k = \\rho_w g (\\pi R^2)$ and $m = \\frac{2}{3}\\pi \\rho_w R^3$.
-[cite_start]$$\\omega = \\sqrt{\\frac{3g}{2R}}$$[cite: 123, 133].
+## 6. Buoyancy & Generalized Forces
 
-## 7. Rope in a Tube
+### (a) Cubical Glacier
 
-[cite_start]**Problem:** Rope of length $l$ in a tube, ends differing by height $h$ [cite: 139-141].
-**Solution:**
-Use Generalized Coordinate $q$ (distance slid).
-$K = \\frac{1}{2}(\\lambda l)\\dot{q}^2$.
-[cite_start]Generalized Force $F_q = -\\partial V / \\partial q = \\lambda gh$ [cite: 146-149].
-[cite_start]$$\\frac{d}{dt}\\left(\\frac{1}{2}\\lambda l \\dot{q}^2\\right) = (\\lambda gh)\\dot{q} \\implies \\ddot{q} = \\frac{gh}{l}$$[cite: 151].
+For a cubic glacier (side $L$, density $\\rho_i$) in water (density $\\rho_w$), the restoring force is $F = -\\rho_w g L^2 x$. With mass $M = \\rho_i L^3$:
 
-## 8. Damped and Driven Systems
+$$\\omega = \\sqrt{\\frac{\\rho_w g}{\\rho_i L}}$$
 
-[cite_start]For $m\\ddot{x} + b\\dot{x} + kx = F_0 \\cos(\\omega t)$, we use complex ansatz $x(t) = A e^{i\\omega t}$ [cite: 155-157].
-**Steady-state Amplitude:**
-[cite_start]$$A_0 = \\frac{F_0}{\\sqrt{(k-m\\omega^2)^2 + (b\\omega)^2}}$$[cite: 164].
-[cite_start]**Phase Shift:** $\\tan \\phi = \\frac{b\\omega}{k-m\\omega^2}$[cite: 166].
+### (b) Half-Submerged Ball
 
-## 9. Springs
+A ball of radius $R$ with $\\rho_{\\text{ball}} = \\rho_w/2$. The effective spring constant is $k = \\rho_w g \\pi R^2$, mass $m = \\frac{2}{3}\\pi\\rho_w R^3$:
 
-1.  **Vector Springs:** Mass attached to $n$ zero-length springs $k_i$ at positions $r_i$. [cite_start]Motion is SHM with $\\omega = \\sqrt{\\sum k_i / m}$ [cite: 170-176].
-2.  [cite_start]**Projectile on Spring:** Projectile on zero-length spring traces an **ellipse** because $x$ and $y$ are independent SHM with same $\\omega$ [cite: 178-182].
+$$\\omega = \\sqrt{\\frac{3g}{2R}}$$
 
-## 10. Selected Olympiad Problems
+### (c) Rope in a Tube
 
-**Water Sloshing (IPhO 1984):**
-Water depth $h \\ll L$. Potential energy from tilting surface by $\\xi$: $U \\approx \\frac{1}{6}\\rho L w g \\xi^2$.
-Kinetic energy from center of mass motion: $K \\approx \\frac{\\rho w L^3}{72h}\\dot{\xi}^2$.
-[cite_start]$$T = 2\\pi \\sqrt{\\frac{L^2}{12gh}}$$ [cite: 191-205].
+A rope of length $l$ and linear mass density $\\lambda$ in a frictionless tube, with left end higher than right end by $h$. Using generalized coordinates — when the rope slides by $dq$, a chunk $\\lambda\\,dq$ is transferred from height $h$ downward. The generalized force is $F_q = \\lambda g h$:
 
-**Pendulum in a Train (PPP 79):**
-Train accelerates at $a$. Effective gravity $g_{eff} = \\sqrt{g^2+a^2}$.
-[cite_start]$$T = \\frac{2\\pi \\sqrt{L}}{(g^2+a^2)^{1/4}}$$ [cite: 207-217].
+$$\\ddot{q} = \\frac{gh}{l}$$
 
-**Non-linear Spring (PPP 77):**
-Restoring force $F \\propto x^3$ implies Potential $V \\propto x^4$. Dimensional analysis gives $T \\propto A^{-1}$. [cite_start]Doubling amplitude halves the period [cite: 218-223].
+## 7. Damped & Driven Systems
 
-**Hanging Rod (F=ma 2022):**
-Rod of length $2L$ hanging by two strings of length $L$. [cite_start]For horizontal oscillation, it behaves identically to a simple pendulum of length $L$: $T = 2\\pi\\sqrt{L/g}$ [cite: 224-232].`,
-  },
+A damped harmonic oscillator obeys $m\\ddot{x} + b\\dot{x} + kx = F_0\\cos(\\omega t)$.
+
+Using complex exponentials, write $x = \\tilde{A}e^{i\\omega t}$ and substitute:
+
+$$\\tilde{A} = \\frac{F_0}{(k - m\\omega^2) + i(b\\omega)}$$
+
+The physical amplitude $A_0 = |\\tilde{A}|$ and phase $\\tan\\varphi = \\frac{b\\omega}{k - m\\omega^2}$:
+
+$$A_0 = \\frac{F_0}{\\sqrt{(k - m\\omega^2)^2 + (b\\omega)^2}}$$
+
+## 8. Springs
+
+### Vector Springs
+*Morin 4.20*
+
+Mass $m$ attached to $n$ springs (zero rest length, constants $k_i$, anchored at $\\mathbf{r}_i$). The total force is:
+
+$$\\mathbf{F} = -\\left(\\sum_i k_i\\right)\\mathbf{r} + \\sum_i k_i \\mathbf{r}_i$$
+
+This is SHM about a shifted equilibrium point with:
+
+$$\\omega = \\sqrt{\\frac{\\sum k_i}{m}}$$
+
+### Projectile on a Spring
+*Morin 4.22*
+
+A projectile attached to a zero-length spring of constant $k$. The force $\\mathbf{F} = -k\\mathbf{r} - mg\\hat{y}$ is equivalent to a spring centered at $\\mathbf{r}_{\\text{eq}} = (0, -mg/k)$. Both $x$ and $y$ are independent SHM with the same $\\omega = \\sqrt{k/m}$, so **the trajectory is an ellipse**. For the projectile to hit the ground moving straight down:
+
+$$v = \\sqrt{\\frac{m}{k}} \\cdot \\frac{g}{\\sin\\theta}$$
+
+## 9. PhO Problems
+
+### Seiching in a Tank
+*IPhO 1984, Problem 2*
+
+Water sloshing in a rectangular tank (length $L$, depth $h \\ll L$). Using energy methods with tilt parameter $\\xi$, equating potential and kinetic energies:
+
+$$T = 2\\pi\\sqrt{\\frac{L^2}{12gh}}$$
+
+This agrees dimensionally with the shallow water wave speed $v = \\sqrt{gh}$.
+
+### Pendulum in an Accelerating Train
+*PPP 79*
+
+In the train's non-inertial frame, the effective gravitational field is $g_{\\text{eff}} = \\sqrt{g^2 + a^2}$:
+
+$$T = 2\\pi\\sqrt{\\frac{L}{g_{\\text{eff}}}} = \\frac{2\\pi\\sqrt{L}}{(g^2 + a^2)^{1/4}}$$
+
+### Transverse Spring Oscillator
+*PPP 77*
+
+Two springs displaced transversely by $x$: the stretch is $\\Delta L \\approx x^2/2L$, giving a restoring force $\\propto x^3$ and potential $V \\propto x^4$. By dimensional analysis, $T \\propto A^{(2-4)/2} = A^{-1}$. **Doubling the amplitude halves the period:**
+
+$$T_{\\text{new}} = T/2$$
+
+### Rod on Two Strings
+*F=ma 2022A*
+
+A uniform rod of length $2L$ hanging from two strings of length $L$. The rod stays horizontal — no rotation — so the CM behaves exactly like a simple pendulum of length $L$:
+
+$$T = 2\\pi\\sqrt{\\frac{L}{g}}$$`,
+  }
+
 
 
 ]
