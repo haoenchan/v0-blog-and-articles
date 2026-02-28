@@ -19,12 +19,11 @@ export function RecentPosts({ posts }: RecentPostsProps) {
               index !== posts.length - 1 ? "border-b border-border" : ""
             }`}
           >
-            <div className="flex items-center gap-3 text-sm text-muted-foreground">
-              <span>{post.category}</span>
-              <span className="text-border">{"/"}</span>
-              <time>{post.date}</time>
+            <div className="flex items-center gap-3 text-sm">
+              <span className="rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">{post.category}</span>
+              <time className="text-muted-foreground">{post.date}</time>
             </div>
-            <h3 className="font-serif text-xl font-semibold text-foreground group-hover:text-accent transition-colors">
+            <h3 className="font-serif text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
               {post.title}
             </h3>
             <p className="text-sm leading-relaxed text-muted-foreground line-clamp-2">

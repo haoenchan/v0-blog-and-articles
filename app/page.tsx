@@ -10,6 +10,9 @@ export default function HomePage() {
     <div className="mx-auto max-w-3xl px-6">
       {/* Hero / Introduction */}
       <section className="py-16 sm:py-24">
+        <div className="mb-4 inline-block rounded-lg bg-primary px-3 py-1">
+          <span className="text-xs font-medium tracking-wider uppercase text-primary-foreground">Math & Physics</span>
+        </div>
         <h1 className="font-serif text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl text-balance">
           About Me
         </h1>
@@ -19,7 +22,7 @@ export default function HomePage() {
         <div className="mt-8 flex items-center gap-6">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors"
+            className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-accent transition-colors"
           >
             Read all articles
             <ArrowRight className="h-4 w-4" />

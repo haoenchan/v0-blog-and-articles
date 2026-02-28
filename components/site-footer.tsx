@@ -18,7 +18,7 @@ export function SiteFooter() {
             href="/blog"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
-            Writing
+            Articles
           </Link>
           <a
             href="https://instagram.com/haoenphysics"
