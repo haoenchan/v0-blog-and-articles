@@ -1068,7 +1068,23 @@ $$\\prod_{n=2}^{\\infty} \\left(\\frac{n^3 - 1}{n^3 + 1}\\right)$$
 
 *Hint:* Factor the cubic terms using the sum and difference of cubes identities and observe the telescoping pattern.`,
   },
+  {
 
+    "slug": "simulating-lennard-jones-line-arrays",
+
+    "title": "Molecular Dynamics: Simulating Lennard-Jones Line Arrays",
+
+    "excerpt": "An analysis of molecular interaction physics using a Python-based 1D particle chain governed by the Lennard-Jones potential.",
+
+    "date": "2026-01-22",
+
+    "readTime": "5 min read",
+
+    "category": "Physics",
+
+    "content": "### Fundamental Molecular Interactions\n\nMolecular dynamics simulations rely on governing equations to define how neutral atoms interact. The **Lennard-Jones (LJ) Potential** is the standard mathematical model used to approximate the potential energy between a pair of non-bonding particles as a function of their separation distance.\n\n### The Line Array Model\n\nImplementing a **Line Array** initialization serves as a controlled environment for observing fundamental physical properties. By constraining particles to a single dimension, it becomes possible to isolate and analyze specific phenomena such as **longitudinal phonons** (lattice vibrations) and **thermal expansion** without the stochastic interference present in 3D systems. This configuration transforms complex interatomic behavior into a measurable, linear system.\n\n### Theoretical Framework\n\nThe Lennard-Jones potential accounts for two primary forces:\n\n1.  **Pauli Repulsion ($1/r^{12}$):** At short ranges, the overlap of electron orbitals creates a steep repulsive barrier, preventing particle collapse.\n2.  **Van der Waals Attraction ($1/r^6$):** At moderate distances, induced dipole-dipole interactions create an attractive force that facilitates the formation of condensed phases.\n\nThe interaction is defined by the following equation:\n\n$$V(r) = 4\\epsilon \\left[ \\left( \\frac{\\sigma}{r} \\right)^{12} - \\left( \\frac{\\sigma}{r} \\right)^6 \\right]$$\n\n<div style=\"text-align: center; margin: 25px 0;\">\n  <img src=\"https://python-code-aws.trinket.io/python-generated/w71mico1/lennard_jones_simulation.gif\" alt=\"Lennard-Jones Line Array Simulation\" style=\"max-width: 100%; border-radius: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);\" />\n  <p style=\"font-size: 0.85em; color: #555; margin-top: 10px;\"><em>Figure 1: Numerical simulation of a 1D atomic chain undergoing thermal oscillation within the LJ potential well.</em></p>\n</div>\n\n### Numerical Implementation\n\nThe simulation utilizes **Velocity Verlet Integration** to compute the trajectories of the particles. This method is preferred over standard Euler integration because it is a symplectic integrator, offering significantly better energy conservation over long-duration simulations. This stability is essential for observing the natural vibrational modes of the array.\n\nIn this implementation, particles are initially positioned at the equilibrium distance ($r \\approx 1.12\\sigma$), where the net force is zero. By introducing small velocity perturbations to simulate thermal energy, the array demonstrates how kinetic energy propagates through a medium at the microscopic scale."
+
+  }
 
 ]
 
