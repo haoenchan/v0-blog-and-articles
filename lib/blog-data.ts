@@ -1070,7 +1070,7 @@ $$\\prod_{n=2}^{\\infty} \\left(\\frac{n^3 - 1}{n^3 + 1}\\right)$$
   },
 
   {
-    "slug": "Mechanics, Rotational Dynamics.",
+    "slug": "mechanics-rotational-dynamics.",
     "title": "Rotational Dynamics and the Center of Mass",
     "excerpt": "A fundamental analysis of rigid body motion, deriving the conservation of the center of mass, the separation of kinetic energy components, and the role of internal forces.",
     "date": "2026-02-05",
