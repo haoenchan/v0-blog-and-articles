@@ -118,6 +118,23 @@ $$\\frac{S_1}{S_2} = \\frac{-\\frac{2004}{2003}}{\\frac{2004}{2003}} = -1$$
 
 **Answers:** $\\dfrac{15}{16}$, $6$, $86$.`,
   },
+  {
+    slug: "complex-numbers-basics",
+    title: "Introduction to Complex Numbers",
+    excerpt:
+      "Understanding complex numbers, Argand diagrams, and their algebraic properties.",
+    date: "March 1, 2026",
+    readTime: "7 min read",
+    category: "Math",
+    content: `
+## 1. Definition
+
+A complex number is written as...
+
+...
+  `,
+  },
+
 ]
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
