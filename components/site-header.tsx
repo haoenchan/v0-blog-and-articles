@@ -8,7 +8,7 @@ import { Menu, X } from "lucide-react"
 
 const navItems = [
   { label: "About", href: "/" },
-  { label: "Writing", href: "/blog" },
+  { label: "Articles", href: "/blog" },
 ]
 
 export function SiteHeader() {
@@ -16,10 +16,10 @@ export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <header className="border-b border-border">
+    <header className="border-b border-border bg-card">
       <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-5">
-        <Link href="/" className="font-serif text-xl font-bold tracking-tight text-foreground">
-          Your Name
+        <Link href="/" className="font-serif text-xl font-bold tracking-tight text-primary">
+          Haoenchan
         </Link>
 
         {/* Desktop nav */}

@@ -9,7 +9,7 @@ interface BlogListProps {
   posts: BlogPost[]
 }
 
-const categories = ["All", "Essays", "Technology", "Writing"]
+const categories = ["All", "Math", "Physics"]
 
 export function BlogList({ posts }: BlogListProps) {
   const [activeCategory, setActiveCategory] = useState("All")
@@ -28,10 +28,10 @@ export function BlogList({ posts }: BlogListProps) {
             key={category}
             onClick={() => setActiveCategory(category)}
             className={cn(
-              "text-sm transition-colors",
+              "rounded-md px-3 py-1.5 text-sm transition-colors",
               activeCategory === category
-                ? "text-foreground font-medium"
-                : "text-muted-foreground hover:text-foreground"
+                ? "bg-primary text-primary-foreground font-medium"
+                : "bg-secondary text-muted-foreground hover:bg-primary/10 hover:text-primary"
             )}
           >
             {category}
@@ -53,14 +53,13 @@ export function BlogList({ posts }: BlogListProps) {
                 index !== filteredPosts.length - 1 && "border-b border-border"
               )}
             >
-              <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                <span>{post.category}</span>
+              <div className="flex items-center gap-3 text-sm">
+                <span className="rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">{post.category}</span>
+                <time className="text-muted-foreground">{post.date}</time>
                 <span className="text-border">{"/"}</span>
-                <time>{post.date}</time>
-                <span className="text-border">{"/"}</span>
-                <span>{post.readTime}</span>
+                <span className="text-muted-foreground">{post.readTime}</span>
               </div>
-              <h2 className="font-serif text-xl font-semibold text-foreground group-hover:text-accent transition-colors sm:text-2xl">
+              <h2 className="font-serif text-xl font-semibold text-foreground group-hover:text-primary transition-colors sm:text-2xl">
                 {post.title}
               </h2>
               <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
