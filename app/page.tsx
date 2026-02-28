@@ -21,7 +21,7 @@ export default function HomePage() {
             href="/blog"
             className="inline-flex items-center gap-2 text-sm font-medium text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors"
           >
-            Read all writing
+            Read all articles
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -34,7 +34,7 @@ export default function HomePage() {
       <section className="py-16">
         <div className="flex items-center justify-between">
           <h2 className="font-serif text-2xl font-bold tracking-tight text-foreground">
-            Recent Writing
+            Recent Articles
           </h2>
           <Link
             href="/blog"
@@ -43,6 +43,9 @@ export default function HomePage() {
             View all
           </Link>
         </div>
+        <p className="mt-3 text-sm text-muted-foreground">
+          {"Here are some of the articles I have recently written in my free time! :pp"}
+        </p>
         <RecentPosts posts={recentPosts} />
       </section>
 
