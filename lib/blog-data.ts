@@ -17,7 +17,7 @@ export const posts: BlogPost[] = [
   //   excerpt: "A short summary of the post that appears on the blog listing.",
   //   date: "February 28, 2026",
   //   readTime: "5 min read",
-  //   category: "Essays",
+  //   category: "Physics",
   //   content: `Your full article content goes here.
   //
   // ## You Can Use Markdown-Style Headings

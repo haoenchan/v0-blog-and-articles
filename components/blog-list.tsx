@@ -9,7 +9,7 @@ interface BlogListProps {
   posts: BlogPost[]
 }
 
-const categories = ["All", "Essays", "Technology", "Writing"]
+const categories = ["All", "Math", "Physics"]
 
 export function BlogList({ posts }: BlogListProps) {
   const [activeCategory, setActiveCategory] = useState("All")
