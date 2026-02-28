@@ -2,7 +2,6 @@ import Link from "next/link"
 import { getAllPosts } from "@/lib/blog-data"
 import { ArrowRight } from "lucide-react"
 import { RecentPosts } from "@/components/recent-posts"
-
 export default function HomePage() {
   const recentPosts = getAllPosts().slice(0, 3)
 
