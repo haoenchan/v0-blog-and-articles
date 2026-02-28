@@ -553,8 +553,8 @@ This is mathematically identical to a simple pendulum of length $L$.
 $$\\boxed{T = 2\\pi\\sqrt{\\frac{L}{g}}}$$`,
   },
   {
-    slug: "inequalities",
-    title: "Introduction to Some Inequalities",
+    slug: "Sums",
+    title: "Sums",
     excerpt:
       "An introduction to mathematical notation and techniques — covering sigma notation, evaluating sums, telescopic sums, pi notation, cyclic and symmetric sums, with worked examples from AMC, AIME, and HMMT.",
     date: "February 28, 2026",
@@ -562,16 +562,7 @@ $$\\boxed{T = 2\\pi\\sqrt{\\frac{L}{g}}}$$`,
     category: "Math",
     content: `## A Note To The Reader
 
-Hi! Thx for taking a read here. If you find any errors at all, please do not hesitate to contact me!
-
-For some students, it may be a little tough to understand certain subtopics and have a good grasp in its concepts which is why I provided tutorials and exercises ranging from easy to hard here. The fundamentals of mathematics are algebra, geometry, combinatorics and number theory. The content that is covered is pretty much what you need to know for basic algebra. It is also essential in a lot of competitions as well — you may find some practices to be exceptionally hard, so there will be hints provided. I will mostly include the AMC and AIME problems, as they are pretty up to standard. These competitions are the national selection test for the USA National Mathematics Team to compete in the International Mathematics Olympiad (IMO).
-
-Here are some books I recommend for starters that want to be serious about math:
-
-- *Junior Problem Seminar* by David A. Santos
-- Any AOPS Book by Richard Rusczyk
-- *The Art And Craft Of Problem Solving* by Paul Zeitz
-
+This article is gonna be a small chapter from a upcoming book that i am still currently working on! Its called Introduction To Inequalities.
 ---
 
 ## 1. Basic Notations And Some Properties
