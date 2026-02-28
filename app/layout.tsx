@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
-  title: 'Haoenchan - Writer & Thinker',
+  title: 'Haoenchan',
   description: 'Personal blog and articles on design, technology, and ideas that matter.',
   generator: 'v0.app',
   icons: {
@@ -36,11 +36,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased">
-        <div className="flex min-h-svh flex-col">
+    <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
+      <body className="font-sans antialiased bg-background text-foreground">
+        <div className="relative flex min-h-svh flex-col overflow-x-hidden">
           <SiteHeader />
-          <main className="flex-1">{children}</main>
+          <main className="relative flex-1">{children}</main>
           <SiteFooter />
         </div>
       </body>
