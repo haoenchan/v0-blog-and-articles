@@ -552,7 +552,531 @@ This is mathematically identical to a simple pendulum of length $L$.
 
 $$\\boxed{T = 2\\pi\\sqrt{\\frac{L}{g}}}$$`,
   },
+  {
+    slug: "inequalities",
+    title: "Introduction to Some Inequalities",
+    excerpt:
+      "An introduction to mathematical notation and techniques — covering sigma notation, evaluating sums, telescopic sums, pi notation, cyclic and symmetric sums, with worked examples from AMC, AIME, and HMMT.",
+    date: "February 28, 2026",
+    readTime: "20 min read",
+    category: "Math",
+    content: `## A Note To The Reader
 
+Hi! Thx for taking a read here. If you find any errors at all, please do not hesitate to contact me!
+
+For some students, it may be a little tough to understand certain subtopics and have a good grasp in its concepts which is why I provided tutorials and exercises ranging from easy to hard here. The fundamentals of mathematics are algebra, geometry, combinatorics and number theory. The content that is covered is pretty much what you need to know for basic algebra. It is also essential in a lot of competitions as well — you may find some practices to be exceptionally hard, so there will be hints provided. I will mostly include the AMC and AIME problems, as they are pretty up to standard. These competitions are the national selection test for the USA National Mathematics Team to compete in the International Mathematics Olympiad (IMO).
+
+Here are some books I recommend for starters that want to be serious about math:
+
+- *Junior Problem Seminar* by David A. Santos
+- Any AOPS Book by Richard Rusczyk
+- *The Art And Craft Of Problem Solving* by Paul Zeitz
+
+---
+
+## 1. Basic Notations And Some Properties
+
+There will be some notations and symbols that we will use:
+
+- $\\sum$ denotes the **Sigma Notation**
+- $\\prod$ denotes the **Pi Notation**
+- $\\mathbb{Z}$ denotes the set of integers
+- $\\mathbb{Z}^+$ denotes the set of positive integers
+- $\\mathbb{N}$ denotes the set of natural numbers
+- **LHS** and **RHS** refer to Left Hand Side and Right Hand Side respectively
+- $\\geq$ is read as "greater than or equal to"
+- $>$ is read as "strictly greater than"
+- $\\implies$ is read as "this implies that"
+- $\\equiv$ is read as "is equivalent to"
+- $\\iff$ is read as "if and only if"
+- $A \\succ B$ is read as "A majorises B"
+
+## 1.1 The Sigma Notation
+
+In order to express a sum of multiple numbers, we use the sigma notation so that we do not have to write out all the sums. For example:
+
+$$1 + 2 + 3 + 4 + 5 + \\cdots + n = \\sum_{k=1}^{n} k$$
+
+The following is what I read as "Sigma from $k = 1$ to $k = n$", which simply means the sum from $1$ to $n$. Note that the $k$ is a **dummy variable**. It's just there — it can be anything!
+
+$$1 + 2 + 3 + 4 + 5 + \\cdots + n = \\sum_{\\text{blablabla}=1}^{n} \\text{blablabla}$$
+
+So basically:
+
+$$\\text{start} + \\cdots + \\text{end} = \\sum_{\\text{anything}=\\text{start}}^{\\text{end}} \\text{anything}$$
+
+Now, let's play around with the sigma notation:
+
+$$2 + 4 + 6 + \\cdots + 2n = 2(1 + 2 + 3 + 4 + \\cdots + n) = 2\\sum_{k=1}^{n} k$$
+
+Notice how there is no difference if the 2 is inside the sigma notation or outside of it:
+
+$$\\sum_{k=1}^{n} 2k = 2 \\sum_{k=1}^{n} k$$
+
+So generally, if $c$ is a constant, then:
+
+$$\\sum_{k=1}^{n} ck = c \\sum_{k=1}^{n} k$$
+
+## 1.2 Properties Of The Sigma Notation
+
+Here are some general properties of the Sigma Notation.
+
+**Proposition 1.** For any constant $c$:
+
+$$\\sum_{k=1}^{n} c = nc$$
+
+*Proof:* We are simply just adding $c$ to itself $n$ times, as there is no "dummy variable" within the Sigma Notation.
+
+$$\\sum_{k=1}^{n} c = \\underbrace{c + c + \\cdots + c}_{n \\text{ times}} = n \\cdot c$$
+
+**Proposition 2.** For any constant $c$:
+
+$$\\sum_{k=1}^{n} ck = c \\sum_{k=1}^{n} k$$
+
+*Proof:* We can simply factor $c$ out of the expanded sum.
+
+$$\\sum_{k=1}^{n} ck = c + 2c + \\cdots + nc = c(1 + 2 + \\cdots + n) = c \\sum_{k=1}^{n} k$$
+
+**Proposition 3.**
+
+$$\\sum_{k=1}^{n} (a_k \\pm b_k) = \\sum_{k=1}^{n} a_k \\pm \\sum_{k=1}^{n} b_k$$
+
+*Proof:* Expanding the notation into sums and grouping them together:
+
+$$\\sum_{k=1}^{n} (a_k + b_k) = (a_1 + b_1) + (a_2 + b_2) + \\cdots + (a_n + b_n)$$
+
+$$= (a_1 + \\cdots + a_n) + (b_1 + \\cdots + b_n) = \\sum_{k=1}^{n} a_k + \\sum_{k=1}^{n} b_k$$
+
+We have discussed some basic properties of the sigma notation. Now let's do some examples.
+
+**Example 1.1.** Evaluate the following:
+
+$$\\sum_{i=1}^{10} (3i - 4)$$
+
+We can expand the sum first:
+
+$$\\sum_{i=1}^{10} (3i - 4) = \\sum_{i=1}^{10} 3i - \\sum_{i=1}^{10} 4 = 3(1 + 2 + 3 + \\cdots + 10) - 4 \\cdot 10 = 3(55) - 40 = 125$$
+
+**Example 1.2.** Evaluate the following:
+
+$$\\sum_{i=1}^{4} (i^3 + 3i - 8)$$
+
+Simply expand:
+
+$$\\sum_{i=1}^{4} (i^3 + 3i - 8) = \\sum_{i=1}^{4} i^3 + \\sum_{i=1}^{4} 3i - \\sum_{i=1}^{4} 8$$
+
+$$= (1^3 + 2^3 + 3^3 + 4^3) + 3(1 + 2 + 3 + 4) - 8 \\cdot 4 = 100 + 30 - 32 = 98$$
+
+## 1.3 Evaluating Sums
+
+We want to unlock a very powerful tool first — the ability to evaluate any sum we want. Being able to evaluate $1 + 2 + 3 + 4 + \\cdots + 10$ is not hard with a calculator, but it would be very annoying to evaluate a large sum if there are a lot of terms!
+
+Let's start by analysing $1 + 2 + 3 + 4 + \\cdots + 10$:
+
+$$(1 + 10) + (2 + 9) + \\cdots + (5 + 6)$$
+
+If we add 1 and 10, 2 and 9, 3 and 8 ... and 5 together with 6 we get 5 "elevens". So the sum is just $55$.
+
+Let's try to find a formula for the sum of any number!
+
+$$1 + 2 + 3 + \\cdots + n$$
+
+We add 1 and $n$ together, 2 and $n-1$ together ...
+
+$$\\underbrace{(n+1) + (n+1) + (n+1) + \\cdots + (n+1)}_{\\frac{n}{2} \\text{ times}}$$
+
+$$= \\frac{n}{2}(n+1)$$
+
+And finally:
+
+$$\\boxed{\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}}$$
+
+**Example 1.3.** Evaluate the sum of integers from 21 to 50:
+
+$$21 + 22 + 23 + \\cdots + 50$$
+
+Simply take the sum from 1 to 50 and subtract the sum from 1 to 20:
+
+$$\\sum_{k=21}^{50} k = \\sum_{k=1}^{50} k - \\sum_{k=1}^{20} k = \\frac{50}{2}(51) - \\frac{20}{2}(21) = 25(51) - 10(21) = 1275 - 210 = 1065$$
+
+---
+
+### Sum of $k^2$
+
+Consider $(k+1)^3 - k^3 = 3k^2 + 3k + 1$. If we sum both sides from $k = 1$ to $n$:
+
+$$\\sum_{k=1}^{n} \\left[(k+1)^3 - k^3\\right] = \\sum_{k=1}^{n} (3k^2 + 3k + 1)$$
+
+The left side telescopes to $(n+1)^3 - 1$:
+
+$$(n+1)^3 - 1 = 3\\sum_{k=1}^{n} k^2 + 3\\left[\\frac{n(n+1)}{2}\\right] + n$$
+
+$$2(n^3 + 3n^2 + 3n) - 3n(n+1) - 2n = 6\\sum_{k=1}^{n} k^2$$
+
+$$2n^3 + 3n^2 + n = 6\\sum_{k=1}^{n} k^2$$
+
+$$n(n+1)(2n+1) = 6\\sum_{k=1}^{n} k^2$$
+
+$$\\boxed{\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}}$$
+
+### Sum of $k^3$
+
+The same method can be used by considering $(k+1)^4 - k^4 = 4k^3 + 6k^2 + 4k + 1$:
+
+$$\\sum_{k=1}^{n} \\left[(k+1)^4 - k^4\\right] = 4\\sum_{k=1}^{n} k^3 + 6\\sum_{k=1}^{n} k^2 + 4\\sum_{k=1}^{n} k + \\sum_{k=1}^{n} 1$$
+
+$$(n+1)^4 - 1 = 4\\sum_{k=1}^{n} k^3 + n(n+1)(2n+1) + 2n(n+1) + n$$
+
+$$n^4 + 4n^3 + 6n^2 + 4n - (2n^3 + 3n^2 + n) - (2n^2 + 2n) - n = 4\\sum_{k=1}^{n} k^3$$
+
+$$n^4 + 2n^3 + n^2 = 4\\sum_{k=1}^{n} k^3$$
+
+$$n^2(n+1)^2 = 4\\sum_{k=1}^{n} k^3$$
+
+$$\\boxed{\\sum_{k=1}^{n} k^3 = \\left[\\frac{n(n+1)}{2}\\right]^2}$$
+
+### Summary of Formulas
+
+$$\\sum_{k=1}^{n} c = nc$$
+
+$$\\sum_{k=1}^{n} k = \\frac{n(n+1)}{2}$$
+
+$$\\sum_{k=1}^{n} k^2 = \\frac{n(n+1)(2n+1)}{6}$$
+
+$$\\sum_{k=1}^{n} k^3 = \\left[\\frac{n(n+1)}{2}\\right]^2$$
+
+**Example 1.4.** Evaluate the following:
+
+$$\\sum_{k=1}^{n} (2k-1)^2$$
+
+Expand the square first: $(2k-1)^2 = 4k^2 - 4k + 1$.
+
+$$\\sum_{k=1}^{n} (4k^2 - 4k + 1) = 4\\sum_{k=1}^{n} k^2 - 4\\sum_{k=1}^{n} k + \\sum_{k=1}^{n} 1$$
+
+$$= 4\\left[\\frac{n(n+1)(2n+1)}{6}\\right] - 4\\left[\\frac{n(n+1)}{2}\\right] + n$$
+
+$$= \\frac{2n(n+1)(2n+1)}{3} - 2n(n+1) + n$$
+
+$$= \\frac{4n^3 + 6n^2 + 2n - 6n^2 - 6n + 3n}{3} = \\frac{4n^3 - n}{3} = \\frac{n(4n^2 - 1)}{3}$$
+
+**Example 1.5.** Evaluate the following in terms of $n$:
+
+$$\\sum_{k=1}^{n} (k-1)^3$$
+
+First, we expand: $(k-1)^3 = k^3 - 3k^2 + 3k - 1$.
+
+$$\\sum_{k=1}^{n} (k^3 - 3k^2 + 3k - 1) = \\sum_{k=1}^{n} k^3 - 3\\sum_{k=1}^{n} k^2 + 3\\sum_{k=1}^{n} k - \\sum_{k=1}^{n} 1$$
+
+$$= \\left[\\frac{n(n+1)}{2}\\right]^2 - 3\\left[\\frac{n(n+1)(2n+1)}{6}\\right] + 3\\left[\\frac{n(n+1)}{2}\\right] - n$$
+
+$$= \\frac{n^2(n+1)^2 - 2n(n+1)(2n+1) + 6n(n+1) - 4n}{4}$$
+
+$$= \\frac{(n^4 + 2n^3 + n^2) - (4n^3 + 6n^2 + 2n) + (6n^2 + 6n) - 4n}{4}$$
+
+$$= \\frac{n^4 - 2n^3 + n^2}{4} = \\frac{n^2(n-1)^2}{4}$$
+
+## 1.4 The Telescopic Sum
+
+Let $a_k = f(k) - f(k+1)$, then:
+
+$$\\sum_{k=1}^{n} a_k = \\sum_{k=1}^{n} [f(k) - f(k+1)]$$
+
+$$a_1 + a_2 + \\cdots + a_n = \\underbrace{[f(1) - f(2)]}_{k=1} + \\underbrace{[f(2) - f(3)]}_{k=2} + \\cdots + \\underbrace{[f(n) - f(n+1)]}_{k=n}$$
+
+$$S_n = f(1) - f(n+1)$$
+
+The telescopic sum is where most terms cancel each other out, leaving only a few terms from the beginning and the end.
+
+---
+
+Here is a useful technique: **partial fractions**.
+
+**Example 1.6.** Decompose the following into partial fractions:
+
+$$\\frac{x+7}{(x-2)(x+1)}$$
+
+Let:
+
+$$\\frac{x+7}{(x-2)(x+1)} \\equiv \\frac{A}{x-2} + \\frac{B}{x+1}$$
+
+$$x + 7 \\equiv A(x+1) + B(x-2)$$
+
+The $\\equiv$ sign indicates that for any value of $x$, the LHS and RHS will always be equivalent. We can substitute any value of $x$ to find $A$ and $B$.
+
+Let $x = -1$: $(-1) + 7 = A(0) + B(-3)$, so $6 = -3B \\implies B = -2$.
+
+Let $x = 2$: $(2) + 7 = A(3) + B(0)$, so $9 = 3A \\implies A = 3$.
+
+Then:
+
+$$\\frac{x+7}{(x-2)(x+1)} = \\frac{3}{x-2} - \\frac{2}{x+1}$$
+
+**Example 1.7.** Evaluate the sum:
+
+$$S_n = \\sum_{k=1}^{n} \\frac{2}{k^2 + 2k}$$
+
+Express in partial fractions:
+
+$$\\frac{2}{k(k+2)} \\equiv \\frac{A}{k} + \\frac{B}{k+2}$$
+
+$$2 \\equiv A(k+2) + Bk$$
+
+Let $k = 0$: $2 = 2A \\implies A = 1$.
+
+Let $k = -2$: $2 = -2B \\implies B = -1$.
+
+$$\\frac{2}{k(k+2)} = \\frac{1}{k} - \\frac{1}{k+2}$$
+
+Then expand:
+
+$$S_n = \\left(\\frac{1}{1} - \\frac{1}{3}\\right) + \\left(\\frac{1}{2} - \\frac{1}{4}\\right) + \\left(\\frac{1}{3} - \\frac{1}{5}\\right) + \\cdots + \\left(\\frac{1}{n-1} - \\frac{1}{n+1}\\right) + \\left(\\frac{1}{n} - \\frac{1}{n+2}\\right)$$
+
+After cancellation, $1 + \\frac{1}{2}$ is left at the front and $-\\frac{1}{n+1} - \\frac{1}{n+2}$ is left at the back:
+
+$$S_n = \\frac{3}{2} - \\frac{1}{n+1} - \\frac{1}{n+2}$$
+
+**Example 1.8.** *(2022 AMC 10)* The sum:
+
+$$\\frac{1}{2!} + \\frac{2}{3!} + \\frac{3}{4!} + \\cdots + \\frac{2021}{2022!}$$
+
+can be expressed as $a - \\dfrac{1}{b!}$, where $a$ and $b$ are positive integers. What is $a + b$?
+
+For all positive integers $n$, we have:
+
+$$\\frac{n}{(n+1)!} = \\frac{(n+1) - 1}{(n+1)!} = \\frac{1}{n!} - \\frac{1}{(n+1)!}$$
+
+So:
+
+$$\\frac{1}{2!} + \\frac{2}{3!} + \\cdots + \\frac{2021}{2022!} = \\left(\\frac{1}{1!} - \\frac{1}{2!}\\right) + \\left(\\frac{1}{2!} - \\frac{1}{3!}\\right) + \\cdots + \\left(\\frac{1}{2021!} - \\frac{1}{2022!}\\right)$$
+
+$$= 1 - \\frac{1}{2022!}$$
+
+So $a + b = 1 + 2022 = \\boxed{2023}$.
+
+---
+
+**Example 1.9.** *(Purple Comet 2004)* Define $a_k = (k^2 + 1)k!$ and $b_k = a_1 + a_2 + a_3 + \\cdots + a_k$. Let $\\dfrac{a_{100}}{b_{100}} = \\dfrac{m}{n}$ where $m$ and $n$ are relatively prime natural numbers. Find $n - m$.
+
+Our strategy is to try to find a telescopic sum with cancellation:
+
+$$(k^2 + 1)k! = k(k \\cdot k!) + k! = k[(k+1)! - k!] + k! = k(k+1)! - k \\cdot k! + k!$$
+
+$$= k(k+1)! - k!(k-1)$$
+
+So for $b_k$:
+
+$$b_k = \\sum_{i=1}^{k} a_i = (1 \\cdot 2! - 1! \\cdot 0) + (2 \\cdot 3! - 2! \\cdot 1) + (3 \\cdot 4! - 3! \\cdot 2) + \\cdots + (k(k+1)! - k!(k-1))$$
+
+After telescoping cancellation:
+
+$$b_k = k(k+1)!$$
+
+And finally:
+
+$$\\frac{a_k}{b_k} = \\frac{(k^2+1)k!}{k(k+1)!} = \\frac{k^2+1}{k(k+1)} = \\frac{k^2+1}{k^2+k}$$
+
+For $k = 100$:
+
+$$\\frac{a_{100}}{b_{100}} = \\frac{100^2 + 1}{100^2 + 100} = \\frac{10001}{10100}$$
+
+$$n - m = 10100 - 10001 = \\boxed{99}$$
+
+## 1.5 The Pi Notation
+
+Just as the Greek letter Sigma ($\\sum$) is used to denote a summation, the Greek letter Pi ($\\prod$) is used in mathematics to denote a **product** of a sequence of terms.
+
+Here are some properties about the Pi Notation:
+
+$$\\prod_{i=1}^{n} c = c^n$$
+
+$$\\prod_{i=1}^{n} (a_i \\cdot b_i) = \\left(\\prod_{i=1}^{n} a_i\\right)\\left(\\prod_{i=1}^{n} b_i\\right)$$
+
+$$\\prod_{i=1}^{n} i = n!$$
+
+Pretty self-explanatory properties! The Pi notation is often used to display a large amount of products compactly.
+
+**Example 1.10.** Simplify the following product into a single fraction:
+
+$$\\prod_{n=2}^{k} \\frac{n-1}{n}$$
+
+Simply expand the product:
+
+$$\\prod_{n=2}^{k} \\frac{n-1}{n} = \\frac{1}{2} \\cdot \\frac{2}{3} \\cdot \\frac{3}{4} \\cdots \\frac{k-1}{k} = \\frac{1}{k}$$
+
+**Example 1.11.** *(Harvard-MIT Mathematics Tournament 2006)* Find:
+
+$$\\frac{2^2}{2^2 - 1} \\cdot \\frac{3^2}{3^2 - 1} \\cdot \\frac{4^2}{4^2 - 1} \\cdots \\frac{2006^2}{2006^2 - 1}$$
+
+We can express it in Pi Notation:
+
+$$\\prod_{n=2}^{2006} \\frac{n^2}{(n-1)(n+1)} = \\prod_{n=2}^{2006} \\frac{n}{n-1} \\cdot \\frac{n}{n+1}$$
+
+$$= \\left(\\frac{2}{1} \\cdot \\frac{3}{2} \\cdot \\frac{4}{3} \\cdots \\frac{2006}{2005}\\right) \\cdot \\left(\\frac{2}{3} \\cdot \\frac{3}{4} \\cdot \\frac{4}{5} \\cdots \\frac{2006}{2007}\\right)$$
+
+$$= \\frac{2006}{1} \\cdot \\frac{2}{2007} = \\boxed{\\frac{4012}{2007}}$$
+
+## 1.6 Cyclic And Symmetric Sums
+
+### Cyclic Sums
+
+A cyclic sum is sometimes specified by $\\sum_{\\text{cyc}}$. This notation implies that all variables are cycled through. Consider a function $f(a_1, a_2, \\ldots, a_n)$:
+
+$$\\sum_{\\text{cyc}} f(a_1, a_2, \\ldots, a_n) = f(a_1, a_2, \\ldots, a_n) + f(a_2, a_3, \\ldots, a_n, a_1) + \\cdots + f(a_n, a_1, a_2, \\ldots, a_{n-1})$$
+
+An example:
+
+$$\\sum_{\\text{cyc}} \\frac{a}{b+c} = \\frac{a}{b+c} + \\frac{b}{c+a} + \\frac{c}{a+b}$$
+
+So $a$ becomes $b$, $b$ becomes $c$ ... for a cycle. If there are more variables, the cycle becomes longer!
+
+However, sometimes we need not cycle through all the variables. So we list out the variables that are to be cycled through beneath the notation:
+
+$$\\sum_{a,b,c} \\frac{ab}{cd} = \\frac{ab}{cd} + \\frac{bc}{ad} + \\frac{ca}{bd}$$
+
+where $d$ remains untouched.
+
+**Example 1.12.** Expand and simplify the following expression for three variables $\\{a, b, c\\}$:
+
+$$\\sum_{\\text{cyc}} \\left(a - \\frac{\\sum_{\\text{cyc}} a}{b+c}\\right)^2$$
+
+We expand the cyclic sum inside first: $\\sum_{\\text{cyc}} a = a + b + c$.
+
+$$\\sum_{\\text{cyc}} \\left(\\frac{-(b+c)}{b+c}\\right)^2 = \\sum_{\\text{cyc}} (-1)^2 = 1 + 1 + 1 = 3$$
+
+**Example 1.13.** Expand and simplify:
+
+$$\\sum_{\\text{cyc}} a \\cdot \\sum_{\\text{cyc}} \\left(b \\cdot \\frac{\\sum_{\\text{cyc}} 1}{c}\\right)$$
+
+We expand the cyclic sum inside first:
+
+$$\\sum_{\\text{cyc}} \\frac{1}{c} = \\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c} = \\frac{ab + bc + ca}{abc}$$
+
+Notice how $\\dfrac{ab + bc + ca}{abc}$ does not change after a cycle:
+
+$$\\sum_{\\text{cyc}} b \\cdot \\frac{ab + bc + ca}{abc} = \\frac{(a+b+c)(ab+bc+ca)}{abc} \\cdot \\frac{1}{\\text{(after simplification)}}$$
+
+$$= \\frac{abc(a+b+c)}{ab+bc+ca}$$
+
+And finally:
+
+$$\\sum_{\\text{cyc}} a \\cdot \\sum_{\\text{cyc}} \\left(b \\cdot \\frac{\\sum_{\\text{cyc}} 1}{c}\\right) = \\frac{abc(a+b+c)^2}{ab+bc+ca}$$
+
+### Symmetric Sums
+
+A symmetric sum $\\sum_{\\text{sym}} f(x_1, x_2, \\ldots, x_n)$ is defined as $\\sum_{\\sigma} f(x_{\\sigma(1)}, x_{\\sigma(2)}, \\ldots, x_{\\sigma(n)})$, where $\\sigma$ ranges over **all permutations** of $(1, 2, \\ldots, n)$.
+
+For three variables $\\{a, b, c\\}$, there are 6 permutations of $abc$: $(a,b,c), (a,c,b), (b,a,c), (b,c,a), (c,a,b), (c,b,a)$.
+
+$$\\sum_{\\text{sym}} abc = abc + acb + bac + bca + cab + cba = 6abc$$
+
+On the other hand, if we want to only consider $ab$ over $\\{a, b, c\\}$:
+
+$$\\sum_{\\text{sym}} ab = ab + ac + ba + bc + ca + cb$$
+
+This is **NOT** to be confused with the cyclic sum:
+
+$$\\sum_{\\text{cyc}} abc = abc + bca + cab = 3abc$$
+
+The cyclic sum is only a single rotation of 3 terms in total, whilst the symmetric sum considers **every possible permutation** of the set.
+
+**Example 1.14.** Expand and simplify the symmetric sum for $\\{a, b, c\\}$:
+
+$$\\sum_{\\text{sym}} (a-b)^2$$
+
+$$= (a-b)^2 + (a-c)^2 + (b-a)^2 + (b-c)^2 + (c-a)^2 + (c-b)^2$$
+
+$$= 2\\left[(a-b)^2 + (b-c)^2 + (c-a)^2\\right]$$
+
+**Example 1.15.** Expand the symmetric sum for $\\{a, b, c, d\\}$:
+
+$$\\sum_{\\text{sym}} ab$$
+
+Starting with $a$: $ab, ac, ad$. Starting with $b$: $ba, bc, bd$ ... So:
+
+$$\\sum_{\\text{sym}} ab = ab + ac + ad + ba + bc + bd + ca + cb + cd + da + db + dc$$
+
+**Example 1.16.** *(Muirhead's Inequality — further discussion in later chapters)*
+
+If $x, y, z$ are non-negative integers, $(7, 3, 1)$ majorises $(5, 4, 2)$:
+
+$$\\sum_{\\text{sym}} x^7 y^3 z \\geq \\sum_{\\text{sym}} x^5 y^4 z^2$$
+
+Expanding:
+
+$$x^7 y^3 z + x^7 z^3 y + y^7 x^3 z + y^7 z^3 x + z^7 x^3 y + z^7 y^3 x \\geq x^5 y^4 z^2 + x^5 z^4 y^2 + y^5 x^4 z^2 + y^5 z^4 x^2 + z^5 x^4 y^2 + z^5 y^4 x^2$$
+
+## 1.7 Exercises
+
+Time to implement what we have learnt!
+
+**1.** Evaluate the following sum:
+
+$$\\sum_{i=1}^{4} (2i - 1)$$
+
+**2.** Find the value of:
+
+$$\\sum_{k=0}^{3} (k^2 + 2)$$
+
+**3.** Find the following sum:
+
+$$\\sum_{n=1}^{5} \\frac{1}{n(n+1)}$$
+
+**4.** Find the value of:
+
+$$\\left(\\sum_{n=1}^{50} n^2\\right) - \\left(\\sum_{n=11}^{50} n^2\\right)$$
+
+**5.** Expand and simplify:
+
+$$\\sum_{j=1}^{n} 4(2 + 2j)^2$$
+
+**6.** Expand and simplify:
+
+$$\\sum_{i=1}^{n} \\left(\\sum_{j=1}^{i} 6j\\right)$$
+
+**7.** Evaluate:
+
+$$\\prod_{k=2}^{n} \\left(1 - \\frac{1}{k^2}\\right)$$
+
+**8.** *(AHSME 1991)* Let $T_n = 1 + 2 + 3 + \\cdots + n$ and:
+
+$$P_n = \\frac{T_2}{T_2 - 1} \\cdot \\frac{T_3}{T_3 - 1} \\cdot \\frac{T_4}{T_4 - 1} \\cdots \\frac{T_n}{T_n - 1}$$
+
+for $n = 2, 3, 4, \\ldots$. Find $P_{1991}$.
+
+**9.** *(AMC 12, 1997)* Find the sum:
+
+$$\\frac{1}{1 \\cdot 3} + \\frac{1}{3 \\cdot 5} + \\cdots + \\frac{1}{(2n-1)(2n+1)} + \\cdots + \\frac{1}{255 \\cdot 257}$$
+
+**10.** *(2001–2002 Mandelbrot)* Define a sequence of numbers by $a_n = 3n^2 + 3n + 1$ so that $a_1 = 7$, $a_2 = 19$, $a_3 = 37$, and so on. Calculate:
+
+$$a_1 + a_2 + \\cdots + a_{100}$$
+
+**11.** *(San Jose State University, Problem of the Week 2011)* Let $p$ and $q$ be positive integers such that:
+
+$$\\frac{p}{q} = 1 + \\frac{1}{2} - \\frac{2}{3} + \\frac{1}{4} + \\frac{1}{5} - \\frac{2}{6} + \\cdots + \\frac{1}{1507} + \\frac{1}{1508} - \\frac{2}{1509} + \\cdots + \\frac{1}{2010}$$
+
+Prove that $p$ is divisible by 2011.
+
+*Hint:* $\\left(-\\frac{3}{3k}\\right)$, and find 2 groups of sums.
+
+**12.** *(USAMT 1999)* Determine the value of:
+
+$$S = \\sqrt{1 + \\frac{1}{1^2} + \\frac{1}{2^2}} + \\sqrt{1 + \\frac{1}{2^2} + \\frac{1}{3^2}} + \\cdots + \\sqrt{1 + \\frac{1}{1999^2} + \\frac{1}{2000^2}}$$
+
+*Hint:* The numerator $n^4 + 2n^3 + 3n^2 + 2n + 1$ is actually the expansion of $(n^2 + n + 1)^2$.
+
+$$f(n) = \\frac{n^2 + n + 1}{n(n+1)}$$
+
+**13.** *(Mandelbrot 1997)* Compute the product:
+
+$$\\frac{(1998^2 - 1996^2)(1998^2 - 1995^2) \\cdots (1998^2 - 0^2)}{(1997^2 - 1996^2)(1997^2 - 1995^2) \\cdots (1997^2 - 0^2)}$$
+
+**14.** Evaluate the infinite product:
+
+$$\\prod_{n=2}^{\\infty} \\left(\\frac{n^3 - 1}{n^3 + 1}\\right)$$
+
+*Hint:* Factor the cubic terms using the sum and difference of cubes identities and observe the telescoping pattern.`,
+  },
 
 
 ]
