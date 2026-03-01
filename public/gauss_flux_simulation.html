@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gauss's Law — Electromagnetic Flux</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap');
+
+    :root {
+      --black: #111111;
+      --dark: #222222;
+      --mid: #666666;
+      --light: #aaaaaa;
+      --faint: #dddddd;
+      --white: #f7f7f5;
+      --border: #cccccc;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: 'EB Garamond', serif;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    canvas {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    #ui {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    #header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 28px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(247, 247, 245, 0.93);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+    }
+
+    #title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--black);
+    }
+
+    #subtitle {
+      font-size: 13px;
+      font-style: italic;
+      color: var(--mid);
+    }
+
+    #panel {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: rgba(247, 247, 245, 0.96);
+      border-left: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 22px;
+      width: 210px;
+      pointer-events: all;
+      backdrop-filter: blur(6px);
+    }
+
+    .panel-section {
+      margin-bottom: 16px;
+    }
+
+    .panel-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .panel-label span {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    input[type=range] {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 1px;
+      background: var(--border);
+      outline: none;
+      margin-top: 4px;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--black);
+      cursor: pointer;
+      border: none;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--black);
+      cursor: pointer;
+      border: none;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 14px 0;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      font-family: 'DM Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.06em;
+      color: var(--dark);
+      cursor: pointer;
+      background: transparent;
+      text-align: left;
+      transition: all 0.15s;
+      margin-bottom: 6px;
+    }
+
+    .btn:hover {
+      background: var(--faint);
+      border-color: var(--mid);
+    }
+
+    .btn.active {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    #charge-indicator {
+      font-family: 'DM Mono', monospace;
+      font-size: 9.5px;
+      color: var(--mid);
+      text-align: center;
+      margin-top: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    #flux-display {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 12px 28px;
+      border-top: 1px solid var(--border);
+      background: rgba(247, 247, 245, 0.93);
+      backdrop-filter: blur(6px);
+      right: 210px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .flux-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flux-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .flux-value {
+      font-family: 'DM Mono', monospace;
+      font-size: 21px;
+      font-weight: 500;
+      color: var(--black);
+      letter-spacing: -0.02em;
+    }
+
+    .flux-unit {
+      font-family: 'DM Mono', monospace;
+      font-size: 9.5px;
+      color: var(--mid);
+    }
+
+    .equation {
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--dark);
+      align-self: center;
+      border-left: 1px solid var(--border);
+      padding-left: 24px;
+      margin-left: 4px;
+      line-height: 1.5;
+    }
+
+    #info {
+      position: absolute;
+      bottom: 54px;
+      left: 28px;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: var(--light);
+      letter-spacing: 0.08em;
+      line-height: 2;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="c"></canvas>
+
+  <div id="ui">
+    <div id="header">
+      <div id="title">Gauss's Law — Electromagnetic Flux</div>
+      <div id="subtitle">Interactive three-dimensional simulation</div>
+    </div>
+
+    <div id="panel">
+      <div class="panel-section">
+        <div class="panel-label">Charge Magnitude (Q) <span id="charge-val">5.0 μC</span></div>
+        <input type="range" id="charge-slider" min="1" max="10" step="0.1" value="5">
+      </div>
+      <div class="panel-section">
+        <div class="panel-label">Surface Radius (r) <span id="radius-val">1.50 m</span></div>
+        <input type="range" id="radius-slider" min="0.5" max="3" step="0.05" value="1.5">
+      </div>
+      <div class="panel-section">
+        <div class="panel-label">Field Line Density <span id="density-val">12</span></div>
+        <input type="range" id="density-slider" min="6" max="24" step="2" value="12">
+      </div>
+      <div class="divider"></div>
+      <button class="btn active" id="toggle-surface">Gaussian Surface: On</button>
+      <button class="btn" id="toggle-charge">Switch to Negative Charge</button>
+      <div id="charge-indicator">⊕ Positive charge</div>
+    </div>
+
+    <div id="flux-display">
+      <div class="flux-block">
+        <div class="flux-label">Total Electric Flux Φ</div>
+        <div class="flux-value" id="flux-val">565.0</div>
+        <div class="flux-unit">kN·m² C⁻¹</div>
+      </div>
+      <div class="flux-block">
+        <div class="flux-label">Permittivity ε₀</div>
+        <div class="flux-value" style="font-size:13px;padding-top:5px;">8.854 × 10⁻¹²</div>
+        <div class="flux-unit">F m⁻¹</div>
+      </div>
+      <div class="equation">∮ <b>E</b> · d<b>A</b> = Q<sub>enc</sub> / ε₀</div>
+    </div>
+
+    <div id="info">Drag — Rotate &nbsp;·&nbsp; Scroll — Zoom</div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    const canvas = document.getElementById('c');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setPixelRatio(devicePixelRatio);
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.setClearColor(0xf7f7f5, 1);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.01, 200);
+    camera.position.set(0, 2.5, 8);
+    camera.lookAt(0, 0, 0);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 1.8));
+    const dLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    dLight.position.set(5, 10, 5);
+    scene.add(dLight);
+
+    // Subtle grid
+    scene.add(new THREE.GridHelper(20, 20, 0xcccccc, 0xe5e5e3));
+
+    let chargeVal = 5.0, surfaceRadius = 1.5, fieldDensity = 12;
+    let isPositive = true, showSurface = true;
+    const fieldLinesGroup = new THREE.Group();
+    scene.add(fieldLinesGroup);
+    let gaussSphere = null, chargeObj = null;
+    const eps0 = 8.854e-12;
+
+    function updateFlux() {
+      document.getElementById('flux-val').textContent =
+        (Math.abs((chargeVal * 1e-6) / eps0) / 1000).toFixed(1);
+    }
+
+    function makeCharge() {
+      if (chargeObj) scene.remove(chargeObj);
+      chargeObj = new THREE.Mesh(
+        new THREE.SphereGeometry(0.16, 32, 32),
+        new THREE.MeshStandardMaterial({ color: 0x111111, emissive: 0x111111, emissiveIntensity: 0.2, roughness: 0.3, metalness: 0.5 })
+      );
+      // Equatorial ring
+      const ring = new THREE.Mesh(
+        new THREE.TorusGeometry(0.25, 0.01, 8, 48),
+        new THREE.MeshBasicMaterial({ color: 0x555555, transparent: true, opacity: 0.5 })
+      );
+      chargeObj.add(ring);
+      scene.add(chargeObj);
+    }
+
+    function makeGaussianSurface() {
+      if (gaussSphere) scene.remove(gaussSphere);
+      if (!showSurface) return;
+      gaussSphere = new THREE.Mesh(
+        new THREE.SphereGeometry(surfaceRadius, 40, 40),
+        new THREE.MeshBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.025, side: THREE.DoubleSide })
+      );
+      gaussSphere.add(new THREE.Mesh(
+        new THREE.SphereGeometry(surfaceRadius, 18, 18),
+        new THREE.MeshBasicMaterial({ color: 0x444444, transparent: true, opacity: 0.28, wireframe: true })
+      ));
+      scene.add(gaussSphere);
+    }
+
+    function makeFieldLines() {
+      while (fieldLinesGroup.children.length) fieldLinesGroup.remove(fieldLinesGroup.children[0]);
+      const N = fieldDensity;
+      const gr = (1 + Math.sqrt(5)) / 2;
+
+      for (let i = 0; i < N * N / 4; i++) {
+        const theta = Math.acos(1 - 2 * (i + 0.5) / (N * N / 4));
+        const phi = 2 * Math.PI * i / gr;
+        const dir = new THREE.Vector3(
+          Math.sin(theta) * Math.cos(phi),
+          Math.cos(theta),
+          Math.sin(theta) * Math.sin(phi)
+        ).normalize();
+
+        const len = 3.8 + Math.random() * 1.2;
+        const start = 0.22;
+        const lineDir = isPositive ? dir.clone() : dir.clone().negate();
+        const group = new THREE.Group();
+        group.position.copy(isPositive ? dir.clone().multiplyScalar(start) : dir.clone().multiplyScalar(len));
+
+        // Line
+        const pts = [];
+        for (let j = 0; j <= 20; j++) {
+          const t = j / 20;
+          pts.push(new THREE.Vector3(lineDir.x * t * (len - start), lineDir.y * t * (len - start), lineDir.z * t * (len - start)));
+        }
+        group.add(new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints(pts),
+          new THREE.LineBasicMaterial({ color: 0x222222, transparent: true, opacity: 0.65 })
+        ));
+
+        // Arrowhead
+        const cone = new THREE.Mesh(
+          new THREE.ConeGeometry(0.032, 0.12, 6),
+          new THREE.MeshBasicMaterial({ color: 0x111111, transparent: true, opacity: 0.8 })
+        );
+        cone.position.copy(lineDir.clone().multiplyScalar(len - start));
+        cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), lineDir);
+        group.add(cone);
+        fieldLinesGroup.add(group);
+      }
+    }
+
+    function rebuild() { makeCharge(); makeGaussianSurface(); makeFieldLines(); updateFlux(); }
+    rebuild();
+
+    // UI controls
+    document.getElementById('charge-slider').addEventListener('input', function () {
+      chargeVal = parseFloat(this.value);
+      document.getElementById('charge-val').textContent = chargeVal.toFixed(1) + ' μC';
+      rebuild();
+    });
+    document.getElementById('radius-slider').addEventListener('input', function () {
+      surfaceRadius = parseFloat(this.value);
+      document.getElementById('radius-val').textContent = surfaceRadius.toFixed(2) + ' m';
+      makeGaussianSurface(); updateFlux();
+    });
+    document.getElementById('density-slider').addEventListener('input', function () {
+      fieldDensity = parseInt(this.value);
+      document.getElementById('density-val').textContent = fieldDensity;
+      makeFieldLines();
+    });
+    document.getElementById('toggle-surface').addEventListener('click', function () {
+      showSurface = !showSurface;
+      this.textContent = 'Gaussian Surface: ' + (showSurface ? 'On' : 'Off');
+      this.classList.toggle('active', showSurface);
+      makeGaussianSurface();
+    });
+    document.getElementById('toggle-charge').addEventListener('click', function () {
+      isPositive = !isPositive;
+      this.textContent = 'Switch to ' + (isPositive ? 'Negative' : 'Positive') + ' Charge';
+      document.getElementById('charge-indicator').textContent = isPositive ? '⊕ Positive charge' : '⊖ Negative charge';
+      rebuild();
+    });
+
+    // Orbit
+    let isDragging = false, prevMouse = { x: 0, y: 0 };
+    let sph = { theta: 0.3, phi: Math.PI / 3, r: 8 };
+    canvas.addEventListener('mousedown', e => { isDragging = true; prevMouse = { x: e.clientX, y: e.clientY }; });
+    canvas.addEventListener('mouseup', () => isDragging = false);
+    canvas.addEventListener('mouseleave', () => isDragging = false);
+    canvas.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      sph.theta -= (e.clientX - prevMouse.x) * 0.004;
+      sph.phi = Math.max(0.1, Math.min(Math.PI - 0.1, sph.phi + (e.clientY - prevMouse.y) * 0.004));
+      prevMouse = { x: e.clientX, y: e.clientY };
+    });
+    canvas.addEventListener('wheel', e => { sph.r = Math.max(3, Math.min(16, sph.r + e.deltaY * 0.01)); });
+    let lastTouch = null;
+    canvas.addEventListener('touchstart', e => { lastTouch = e.touches[0]; });
+    canvas.addEventListener('touchmove', e => {
+      if (!lastTouch) return;
+      const t = e.touches[0];
+      sph.theta -= (t.clientX - lastTouch.clientX) * 0.004;
+      sph.phi = Math.max(0.1, Math.min(Math.PI - 0.1, sph.phi + (t.clientY - lastTouch.clientY) * 0.004));
+      lastTouch = t;
+    });
+
+    let time = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      time += 0.006;
+      camera.position.x = sph.r * Math.sin(sph.phi) * Math.sin(sph.theta);
+      camera.position.y = sph.r * Math.cos(sph.phi);
+      camera.position.z = sph.r * Math.sin(sph.phi) * Math.cos(sph.theta);
+      camera.lookAt(0, 0, 0);
+      if (chargeObj) chargeObj.scale.setScalar(1 + 0.03 * Math.sin(time * 2.2));
+      fieldLinesGroup.children.forEach((g, i) => {
+        const p = time * 1.4 + i * 0.3;
+        g.children.forEach(c => { if (c.material) c.material.opacity = 0.3 + 0.35 * Math.abs(Math.sin(p)); });
+      });
+      if (gaussSphere) gaussSphere.material.opacity = 0.02 + 0.012 * Math.sin(time);
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = innerWidth / innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+    });
+  </script>
+</body>
+
+</html>
