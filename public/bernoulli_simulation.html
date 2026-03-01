@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bernoulli's Equation & Continuity</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap');
+
+    :root {
+      --black: #111111;
+      --dark: #222222;
+      --mid: #666666;
+      --light: #aaaaaa;
+      --faint: #e8e8e6;
+      --white: #f7f7f5;
+      --border: #cccccc;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: 'EB Garamond', serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    canvas {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    /* ── Header ── */
+    #header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      padding: 0 28px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(247, 247, 245, 0.95);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      z-index: 20;
+    }
+
+    #title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    #subtitle {
+      font-size: 13px;
+      font-style: italic;
+      color: var(--mid);
+    }
+
+    /* ── Right Panel ── */
+    #panel {
+      position: fixed;
+      top: 50px;
+      right: 0;
+      width: 230px;
+      bottom: 0;
+      background: rgba(247, 247, 245, 0.97);
+      border-left: 1px solid var(--border);
+      padding: 18px 20px;
+      overflow-y: auto;
+      z-index: 20;
+    }
+
+    .section-head {
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.14em;
+      color: var(--mid);
+      text-transform: uppercase;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--faint);
+      margin-bottom: 14px;
+    }
+
+    .ctrl {
+      margin-bottom: 14px;
+    }
+
+    .ctrl-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .ctrl-label span {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    input[type=range] {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 1px;
+      background: var(--border);
+      outline: none;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--black);
+      cursor: pointer;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--black);
+      cursor: pointer;
+      border: none;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--faint);
+      margin: 16px 0;
+    }
+
+    .readout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .readout {
+      background: var(--faint);
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+    }
+
+    .r-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .r-val {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--black);
+      white-space: nowrap;
+    }
+
+    .r-unit {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      color: var(--mid);
+      margin-top: 1px;
+    }
+
+    /* ── Footer ── */
+    #footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 230px;
+      height: 56px;
+      padding: 0 28px;
+      border-top: 1px solid var(--border);
+      background: rgba(247, 247, 245, 0.95);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      gap: 0;
+      z-index: 20;
+    }
+
+    .eq-block {
+      display: flex;
+      flex-direction: column;
+      padding: 0 24px 0 0;
+      margin-right: 24px;
+      border-right: 1px solid var(--border);
+    }
+
+    .eq-block:last-child {
+      border-right: none;
+    }
+
+    .eq-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .eq-text {
+      font-family: 'EB Garamond', serif;
+      font-size: 13.5px;
+      font-style: italic;
+      color: var(--dark);
+    }
+
+    /* ── Hint ── */
+    #hint {
+      position: fixed;
+      bottom: 64px;
+      left: 28px;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: var(--light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.9;
+      z-index: 20;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="header">
+    <div id="title">Bernoulli's Equation &amp; Continuity</div>
+    <div id="subtitle">Incompressible steady-state fluid flow</div>
+  </div>
+
+  <div id="panel">
+    <div class="section-head">Pipe Geometry</div>
+
+    <div class="ctrl">
+      <div class="ctrl-label">Inlet Radius r₁ <span id="lbl-r1">1.00 m</span></div>
+      <input type="range" id="sl-r1" min="0.5" max="1.8" step="0.05" value="1.0">
+    </div>
+    <div class="ctrl">
+      <div class="ctrl-label">Outlet Radius r₂ <span id="lbl-r2">0.50 m</span></div>
+      <input type="range" id="sl-r2" min="0.2" max="1.4" step="0.05" value="0.5">
+    </div>
+    <div class="ctrl">
+      <div class="ctrl-label">Height Δh <span id="lbl-h">0.0 m</span></div>
+      <input type="range" id="sl-h" min="-1.5" max="1.5" step="0.1" value="0">
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-head">Flow</div>
+
+    <div class="ctrl">
+      <div class="ctrl-label">Inlet Velocity v₁ <span id="lbl-v1">2.0 m/s</span></div>
+      <input type="range" id="sl-v1" min="0.5" max="6" step="0.1" value="2.0">
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-head">Derived Values</div>
+
+    <div class="readout-grid">
+      <div class="readout">
+        <div class="r-label">v₂</div>
+        <div class="r-val" id="out-v2">—</div>
+        <div class="r-unit">m / s</div>
+      </div>
+      <div class="readout">
+        <div class="r-label">ΔP</div>
+        <div class="r-val" id="out-dp">—</div>
+        <div class="r-unit">kPa</div>
+      </div>
+      <div class="readout">
+        <div class="r-label">Q (flow)</div>
+        <div class="r-val" id="out-q">—</div>
+        <div class="r-unit">m³ / s</div>
+      </div>
+      <div class="readout">
+        <div class="r-label">ρ water</div>
+        <div class="r-val">1000</div>
+        <div class="r-unit">kg / m³</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div class="eq-block">
+      <div class="eq-label">Bernoulli</div>
+      <div class="eq-text">P + ½ρv² + ρgh = const</div>
+    </div>
+    <div class="eq-block">
+      <div class="eq-label">Continuity</div>
+      <div class="eq-text">A₁v₁ = A₂v₂</div>
+    </div>
+    <div class="eq-block">
+      <div class="eq-label">Pressure Difference</div>
+      <div class="eq-text">ΔP = ½ρ(v₂² − v₁²) + ρgΔh</div>
+    </div>
+  </div>
+
+  <div id="hint">Drag — Rotate<br>Scroll — Zoom</div>
+
+  <canvas id="c"></canvas>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // ── Renderer ──────────────────────────────────────────────────────────────────
+    const canvas = document.getElementById('c');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.setClearColor(0xf7f7f5, 1);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(42, innerWidth / innerHeight, 0.01, 300);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 2.0));
+    const sun = new THREE.DirectionalLight(0xffffff, 0.6);
+    sun.position.set(4, 10, 6);
+    scene.add(sun);
+
+    const grid = new THREE.GridHelper(40, 40, 0xcccccc, 0xe5e5e3);
+    scene.add(grid);
+
+    // ── State ─────────────────────────────────────────────────────────────────────
+    let R1 = 1.0, R2 = 0.5, V1 = 2.0, DH = 0.0;
+    const RHO = 1000, G = 9.81;
+    const L_PIPE = 4.5;   // length each straight section
+    const L_TRANS = 2.0;  // length of taper
+
+    // Geometry groups
+    const pipeGroup = new THREE.Group(); scene.add(pipeGroup);
+    const streamGroup = new THREE.Group(); scene.add(streamGroup);
+    const partGroup = new THREE.Group(); scene.add(partGroup);
+
+    // ── Maths ─────────────────────────────────────────────────────────────────────
+    function v2() { return V1 * (R1 * R1) / (R2 * R2); }
+    function dP() { const u = v2(); return 0.5 * RHO * (u * u - V1 * V1) + RHO * G * DH; }
+    function flow() { return V1 * Math.PI * R1 * R1; }
+
+    function updateReadouts() {
+      document.getElementById('out-v2').textContent = v2().toFixed(2);
+      document.getElementById('out-dp').textContent = (dP() / 1000).toFixed(2);
+      document.getElementById('out-q').textContent = flow().toFixed(2);
+    }
+
+    // ── Section query ─────────────────────────────────────────────────────────────
+    // x goes from -(L_PIPE + L_TRANS/2)  to  +(L_PIPE + L_TRANS/2)
+    function sectionAt(x) {
+      const half = L_PIPE + L_TRANS / 2;
+      const xL = -L_TRANS / 2, xR = L_TRANS / 2;
+
+      if (x <= xL) {
+        return { r: R1, y: 0, vel: V1 };
+      } else if (x >= xR) {
+        return { r: R2, y: DH, vel: v2() };
+      } else {
+        const t = (x - xL) / L_TRANS;   // 0→1
+        const r = R1 + (R2 - R1) * t;
+        const y = DH * t;
+        const vel = V1 * (R1 * R1) / (r * r);
+        return { r, y, vel };
+      }
+    }
+
+    // ── Pipe ──────────────────────────────────────────────────────────────────────
+    const RADIAL = 36, AXIAL = 80;
+
+    function buildPipe() {
+      while (pipeGroup.children.length) pipeGroup.remove(pipeGroup.children[0]);
+
+      const xMin = -(L_PIPE + L_TRANS / 2);
+      const xMax = (L_PIPE + L_TRANS / 2);
+
+      // ---- Build open-ended tube via LatheGeometry approach:
+      //      We sweep cross-section rings along the axis.
+
+      const positions = [];
+      const indices = [];
+
+      for (let ax = 0; ax <= AXIAL; ax++) {
+        const t = ax / AXIAL;
+        const x = xMin + t * (xMax - xMin);
+        const sec = sectionAt(x);
+
+        for (let rd = 0; rd <= RADIAL; rd++) {
+          const angle = (rd / RADIAL) * Math.PI * 2;
+          const y = sec.y + sec.r * Math.sin(angle);
+          const z = sec.r * Math.cos(angle);
+          positions.push(x, y, z);
+        }
+      }
+
+      for (let ax = 0; ax < AXIAL; ax++) {
+        for (let rd = 0; rd < RADIAL; rd++) {
+          const a = ax * (RADIAL + 1) + rd;
+          const b = a + RADIAL + 1;
+          indices.push(a, b, a + 1);
+          indices.push(b, b + 1, a + 1);
+        }
+      }
+
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+      geo.setIndex(indices);
+      geo.computeVertexNormals();
+
+      // Transparent shell
+      const matShell = new THREE.MeshStandardMaterial({
+        color: 0x444444,
+        roughness: 0.4,
+        metalness: 0.1,
+        transparent: true,
+        opacity: 0.12,
+        side: THREE.DoubleSide,
+        depthWrite: false
+      });
+      pipeGroup.add(new THREE.Mesh(geo, matShell));
+
+      // Wireframe edges
+      const matWire = new THREE.MeshBasicMaterial({
+        color: 0x555555,
+        transparent: true,
+        opacity: 0.22,
+        wireframe: true
+      });
+      pipeGroup.add(new THREE.Mesh(geo.clone(), matWire));
+
+      // End caps
+      addCap(xMin, R1, 0, 1);
+      addCap(xMax, R2, DH, -1);
+    }
+
+    function addCap(x, r, cy, dir) {
+      const geo = new THREE.CircleGeometry(r, RADIAL);
+      const mat = new THREE.MeshBasicMaterial({
+        color: 0x444444, transparent: true, opacity: 0.18,
+        side: THREE.DoubleSide
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.rotation.y = Math.PI / 2;
+      mesh.position.set(x, cy, 0);
+      pipeGroup.add(mesh);
+    }
+
+    // ── Streamlines ───────────────────────────────────────────────────────────────
+    function buildStreamlines() {
+      while (streamGroup.children.length) streamGroup.remove(streamGroup.children[0]);
+
+      const xMin = -(L_PIPE + L_TRANS / 2);
+      const xMax = (L_PIPE + L_TRANS / 2);
+      const nLines = 7;
+
+      for (let li = 0; li < nLines; li++) {
+        const frac = (li + 0.5) / nLines * 0.82;
+        const angle = (li / nLines) * Math.PI * 2;
+        const pts = [];
+        const steps = 100;
+
+        for (let s = 0; s <= steps; s++) {
+          const x = xMin + (s / steps) * (xMax - xMin);
+          const sec = sectionAt(x);
+          pts.push(new THREE.Vector3(
+            x,
+            sec.y + sec.r * frac * Math.sin(angle),
+            sec.r * frac * Math.cos(angle)
+          ));
+        }
+
+        const mat = new THREE.LineBasicMaterial({
+          color: 0x444444, transparent: true, opacity: 0.28
+        });
+        streamGroup.add(new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints(pts), mat
+        ));
+      }
+    }
+
+    // ── Particles ─────────────────────────────────────────────────────────────────
+    const N_PART = 200;
+    const pData = [];
+
+    function spawnParticle(i) {
+      const xMin = -(L_PIPE + L_TRANS / 2);
+      const xMax = (L_PIPE + L_TRANS / 2);
+      const x = xMin + Math.random() * (xMax - xMin);
+      const sec = sectionAt(x);
+      const rf = Math.sqrt(Math.random()) * 0.88;
+      const ang = Math.random() * Math.PI * 2;
+      return { x, rf, ang, sec };
+    }
+
+    function initParticles() {
+      while (partGroup.children.length) partGroup.remove(partGroup.children[0]);
+      pData.length = 0;
+
+      const geo = new THREE.SphereGeometry(0.055, 5, 5);
+      for (let i = 0; i < N_PART; i++) {
+        const d = spawnParticle(i);
+        pData.push(d);
+        const mat = new THREE.MeshBasicMaterial({
+          color: 0x111111, transparent: true, opacity: 0.6
+        });
+        const mesh = new THREE.Mesh(geo, mat);
+        partGroup.add(mesh);
+        syncParticle(i);
+      }
+    }
+
+    function syncParticle(i) {
+      const d = pData[i];
+      const sec = sectionAt(d.x);
+      const r = sec.r * d.rf;
+      partGroup.children[i].position.set(
+        d.x,
+        sec.y + r * Math.sin(d.ang),
+        r * Math.cos(d.ang)
+      );
+      const vn = Math.min(sec.vel / 14, 1);
+      partGroup.children[i].material.opacity = 0.3 + vn * 0.5;
+      const s = 1.1 - vn * 0.35;
+      partGroup.children[i].scale.setScalar(s);
+    }
+
+    function stepParticles(dt) {
+      const xMin = -(L_PIPE + L_TRANS / 2);
+      const xMax = (L_PIPE + L_TRANS / 2);
+
+      for (let i = 0; i < N_PART; i++) {
+        const d = pData[i];
+        const sec = sectionAt(d.x);
+        d.x += sec.vel * dt;
+        if (d.x > xMax) d.x = xMin + (d.x - xMax);
+        syncParticle(i);
+      }
+    }
+
+    // ── Orbit state (declared before rebuild) ────────────────────────────────────
+    let dragging = false, pm = { x: 0, y: 0 };
+    let sph = { theta: 0.35, phi: 1.15, r: 16 };
+
+    // ── Rebuild ───────────────────────────────────────────────────────────────────
+    function rebuild() {
+      buildPipe();
+      buildStreamlines();
+      initParticles();
+      updateReadouts();
+      const span = L_PIPE + L_TRANS;
+      sph.r = Math.max(sph.r, span * 1.6);
+    }
+
+    rebuild();
+
+    // ── Sliders ───────────────────────────────────────────────────────────────────
+    function bindSlider(id, lblId, fmt, setter) {
+      document.getElementById(id).addEventListener('input', function () {
+        setter(parseFloat(this.value));
+        document.getElementById(lblId).textContent = fmt(parseFloat(this.value));
+        rebuild();
+      });
+    }
+
+    bindSlider('sl-r1', 'lbl-r1', v => v.toFixed(2) + ' m', v => { R1 = v; });
+    bindSlider('sl-r2', 'lbl-r2', v => v.toFixed(2) + ' m', v => { R2 = v; });
+    bindSlider('sl-h', 'lbl-h', v => v.toFixed(1) + ' m', v => { DH = v; });
+    bindSlider('sl-v1', 'lbl-v1', v => v.toFixed(1) + ' m/s', v => {
+      V1 = v;
+      updateReadouts();  // no geometry rebuild needed
+    });
+
+    // ── Orbit ─────────────────────────────────────────────────────────────────────
+
+    canvas.addEventListener('mousedown', e => { dragging = true; pm = { x: e.clientX, y: e.clientY }; });
+    window.addEventListener('mouseup', () => dragging = false);
+    window.addEventListener('mousemove', e => {
+      if (!dragging) return;
+      sph.theta -= (e.clientX - pm.x) * 0.004;
+      sph.phi = Math.max(0.15, Math.min(Math.PI - 0.15, sph.phi + (e.clientY - pm.y) * 0.004));
+      pm = { x: e.clientX, y: e.clientY };
+    });
+    canvas.addEventListener('wheel', e => {
+      sph.r = Math.max(5, Math.min(28, sph.r + e.deltaY * 0.018));
+      e.preventDefault();
+    }, { passive: false });
+
+    let lt = null;
+    canvas.addEventListener('touchstart', e => { lt = e.touches[0]; });
+    canvas.addEventListener('touchmove', e => {
+      if (!lt) return;
+      const t = e.touches[0];
+      sph.theta -= (t.clientX - lt.clientX) * 0.004;
+      sph.phi = Math.max(0.15, Math.min(Math.PI - 0.15, sph.phi + (t.clientY - lt.clientY) * 0.004));
+      lt = t;
+    });
+
+    // ── Animate ───────────────────────────────────────────────────────────────────
+    let prev = performance.now();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const now = performance.now();
+      const dt = Math.min((now - prev) / 1000, 0.05);
+      prev = now;
+
+      const cx = sph.r * Math.sin(sph.phi) * Math.sin(sph.theta);
+      const cy = sph.r * Math.cos(sph.phi) + DH * 0.25;
+      const cz = sph.r * Math.sin(sph.phi) * Math.cos(sph.theta);
+      camera.position.set(cx, cy, cz);
+      camera.lookAt(0, DH * 0.25, 0);
+
+      stepParticles(dt);
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = innerWidth / innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+    });
+  </script>
+</body>
+
+</html>
