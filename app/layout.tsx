@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
+import { ChargeField } from '@/components/charge-field'
 import './globals.css'
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -38,6 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
       <body className="font-sans antialiased bg-background text-foreground">
+        <ChargeField />
         <div className="relative flex min-h-svh flex-col overflow-x-hidden">
           <SiteHeader />
           <main className="relative flex-1">{children}</main>

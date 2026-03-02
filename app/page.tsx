@@ -29,7 +29,7 @@ export default function HomePage() {
           <span className="text-rainbow">Me</span>
         </h1>
 
-        <p className="mt-8 max-w-lg text-lg leading-relaxed text-muted-foreground animate-fade-in-up [animation-delay:150ms]">
+        <p className="mt-8 max-w-lg text-lg leading-relaxed text-foreground/75 animate-fade-in-up [animation-delay:150ms]">
           {"Hi! I'm Haoen and I am interested in physics and a bit of math. Here, I will post some of my own articles including my own solutions to some problems and also some handouts."}
         </p>
 
@@ -65,7 +65,7 @@ export default function HomePage() {
             <ArrowRight className="h-3.5 w-3.5 -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
           </Link>
         </div>
-        <p className="mt-3 text-sm text-muted-foreground/60">
+        <p className="mt-3 text-sm text-muted-foreground/80">
           {"Here are some of the articles I have recently written in my free time! :pp"}
         </p>
         <RecentPosts posts={recentPosts} />
