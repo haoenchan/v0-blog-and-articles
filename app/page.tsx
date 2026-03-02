@@ -2,6 +2,7 @@ import Link from "next/link"
 import { getAllPosts } from "@/lib/blog-data"
 import { ArrowRight, Sparkles } from "lucide-react"
 import { RecentPosts } from "@/components/recent-posts"
+import { PhysicsCanvas } from "@/components/physics-canvas"
 
 export default function HomePage() {
   const recentPosts = getAllPosts().slice(0, 3)
@@ -12,6 +13,9 @@ export default function HomePage() {
       {/* Ambient background glows */}
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[800px] rounded-full bg-gradient-to-br from-sky-500/[0.06] via-purple-500/[0.04] to-transparent blur-[120px] animate-glow-drift" />
       <div className="pointer-events-none absolute top-80 -right-40 h-[350px] w-[350px] rounded-full bg-gradient-to-br from-emerald-500/[0.04] to-transparent blur-[100px] animate-glow-drift-reverse" />
+
+      {/* Physics diagram animations behind content */}
+      <PhysicsCanvas />
 
       {/* Hero */}
       <section className="relative py-24 sm:py-32">
