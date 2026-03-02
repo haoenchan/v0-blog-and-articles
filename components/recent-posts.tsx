@@ -28,7 +28,7 @@ export function RecentPosts({ posts }: RecentPostsProps) {
                 <span className="rounded-full bg-primary/10 px-3 py-1 font-semibold text-primary ring-1 ring-primary/10 transition-all duration-300 group-hover:bg-primary/15 group-hover:ring-primary/25">
                   {post.category}
                 </span>
-                <span className="flex items-center gap-1.5 text-muted-foreground/50">
+                <span className="flex items-center gap-1.5 text-muted-foreground/70">
                   <Calendar className="h-3 w-3" />
                   {post.date}
                 </span>
@@ -43,12 +43,12 @@ export function RecentPosts({ posts }: RecentPostsProps) {
               </h3>
 
               {/* Excerpt */}
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground/60 line-clamp-2 transition-colors duration-300 group-hover:text-muted-foreground/80">
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground/80 line-clamp-2 transition-colors duration-300 group-hover:text-muted-foreground">
                 {post.excerpt}
               </p>
 
               {/* Read time */}
-              <div className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground/40 transition-colors duration-300 group-hover:text-muted-foreground/60">
+              <div className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground/60 transition-colors duration-300 group-hover:text-muted-foreground/80">
                 <Clock className="h-3 w-3" />
                 {post.readTime}
               </div>
