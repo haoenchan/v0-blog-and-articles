@@ -660,7 +660,7 @@ $$= (1^3 + 2^3 + 3^3 + 4^3) + 3(1 + 2 + 3 + 4) - 8 \\cdot 4 = 100 + 30 - 32 = 98
 
 ## 1.3 Evaluating Sums
 
-We want to unlock a very powerful tool first — the ability to evaluate any sum we want. Being able to evaluate $1 + 2 + 3 + 4 + \\cdots + 10$ is not hard with a calculator, but it would be very annoying to evaluate a large sum if there are a lot of terms!
+We want to unlock a very powerful tool first, the ability to evaluate any sum we want. Being able to evaluate $1 + 2 + 3 + 4 + \\cdots + 10$ is not hard with a calculator, but it would be very annoying to evaluate a large sum if there are a lot of terms!
 
 Let's start by analysing $1 + 2 + 3 + 4 + \\cdots + 10$:
 
