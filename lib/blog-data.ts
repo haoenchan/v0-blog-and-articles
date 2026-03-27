@@ -1114,6 +1114,14 @@ $$\\prod_{n=2}^{\\infty} \\left(\\frac{n^3 - 1}{n^3 + 1}\\right)$$
     "content": "### The Physics of Moving Fluids\n\nWhen a fluid moves through a pipe, three quantities are always in conversation with one another: **pressure**, **velocity**, and **elevation**. Bernoulli's Equation formalises this relationship, asserting that for an ideal, incompressible fluid in steady flow, the total mechanical energy per unit volume remains constant along any streamline.\n\n### Bernoulli's Equation\n\nDerived from the conservation of energy, the equation takes the form:\n\n$$P + \\frac{1}{2}\\rho v^2 + \\rho g h = \\text{constant}$$\n\nWhere $P$ is the static pressure, $\\rho$ is the fluid density, $v$ is the local flow velocity, $g$ is gravitational acceleration, and $h$ is the elevation above a reference point. The implication is striking: as a fluid accelerates into a narrower section of pipe, its kinetic energy increases and its pressure must fall proportionally to conserve the total.\n\n### The Equation of Continuity\n\nBefore Bernoulli's relation can be applied, the velocity at each cross-section must be determined. This is governed by the **Equation of Continuity**, which expresses the conservation of mass for an incompressible fluid:\n\n$$A_1 v_1 = A_2 v_2$$\n\nThe product of cross-sectional area and velocity remains constant along the pipe. Halving the pipe radius reduces its area by a factor of four, quadrupling the velocity at that section. It is this enforced acceleration that drives the pressure drop described by Bernoulli.\n\n### Interactive Simulation\n\nThe simulation below models steady-state flow through a pipe of variable geometry. Particle tracers move at velocities consistent with the continuity equation, visibly accelerating through the constriction. The right-hand panel updates the outlet velocity, pressure difference, and volumetric flow rate in real time.\n\n<div style=\"width: 100%; height: 600px; margin: 25px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.15);\">\n  <iframe src=\"/bernoulli_simulation.html\" style=\"width: 100%; height: 100%; border: none;\" />\n</div>\n\n<p style=\"font-size: 0.85em; color: #555; text-align: center; margin-top: -15px;\"><em>Figure 1: Three-dimensional simulation of incompressible fluid flow. Adjust the pipe radii, height difference, and inlet velocity to observe how each parameter affects pressure and flow speed.</em></p>\n"
   }
 
+  {
+    "slug": "bernoulli-equation-and-continuity",
+    "title": "Fluid Dynamics: Bernoulli's Equation and the Continuity Principle",
+    "excerpt": "An interactive 3D simulation demonstrating how pressure, velocity, and elevation govern the behaviour of incompressible fluid flow through a constricting pipe.",
+    "date": "2026-03-01",
+    "readTime": "5 min read",
+    "category": "Physics",
+    "content": "
 
 
 ]
