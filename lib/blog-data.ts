@@ -259,22 +259,18 @@ The equations of motion are:
 $$m\\ddot{x}_1 = -kx_1 - \\kappa(x_1 - x_2)$$
 
 $$m\\ddot{x}_2 = -kx_2 - \\kappa(x_2 - x_1)$$
-
-We switch to normal coordinates (sum and difference):
-
-- Let $y_1 = x_1 + x_2$ (Center of Mass mode). Adding the EOMs:
-
+Let $y_1 = x_1 + x_2$
 $$m\\ddot{y}_1 = -ky_1 \\implies \\omega_1 = \\sqrt{k/m}$$
 
-- Let $y_2 = x_1 - x_2$ (Relative mode). Subtracting the EOMs:
+Let $y_2 = x_1 - x_2$
 
 $$m\\ddot{y}_2 = -(k + 2\\kappa)y_2 \\implies \\omega_2 = \\sqrt{(k + 2\\kappa)/m}$$
 
-Initial conditions imply $y_1(0) = a$ and $y_2(0) = a$. Reconstructing the positions:
+Initial conditions imply $y_1(0) = a$ and $y_2(0) = a$.
 
 $$x_1(t) = \\frac{1}{2}(y_1 + y_2) = \\frac{a}{2}(\\cos(\\omega_1 t) + \\cos(\\omega_2 t))$$
 
-Using sum-to-product identities and defining $\\epsilon \\approx \\omega_1(\\kappa / 2k)$:
+$\\epsilon \\approx \\omega_1(\\kappa / 2k)$:
 
 $$\\boxed{x_1(t) \\approx a\\cos((\\omega + \\epsilon)t)\\cos(\\epsilon t)}$$
 
