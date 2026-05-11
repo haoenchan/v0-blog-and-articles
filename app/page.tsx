@@ -1,14 +1,21 @@
+'use client'
+
 import Link from "next/link"
 import { getAllPosts } from "@/lib/blog-data"
 import { ArrowRight, Sparkles } from "lucide-react"
 import { RecentPosts } from "@/components/recent-posts"
 import { PhysicsCanvas } from "@/components/physics-canvas"
+import { LoadingPage } from "@/components/loading-page"
+import { usePageLoading } from "@/hooks/use-page-loading"
 
 export default function HomePage() {
+  const isLoading = usePageLoading(1200)
   const recentPosts = getAllPosts().slice(0, 3)
 
   return (
-    <div className="relative mx-auto max-w-3xl px-6 overflow-hidden">
+    <>
+      {isLoading && <LoadingPage />}
+      <div className="relative mx-auto max-w-3xl px-6 overflow-hidden">
 
       {/* Ambient background glows */}
       <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[800px] rounded-full bg-gradient-to-br from-sky-500/[0.06] via-purple-500/[0.04] to-transparent blur-[120px] animate-glow-drift" />
@@ -74,6 +81,7 @@ export default function HomePage() {
         </p>
         <RecentPosts posts={recentPosts} />
       </section>
-    </div>
+      </div>
+    </>
   )
 }
