@@ -259,22 +259,18 @@ The equations of motion are:
 $$m\\ddot{x}_1 = -kx_1 - \\kappa(x_1 - x_2)$$
 
 $$m\\ddot{x}_2 = -kx_2 - \\kappa(x_2 - x_1)$$
-
-We switch to normal coordinates (sum and difference):
-
-- Let $y_1 = x_1 + x_2$ (Center of Mass mode). Adding the EOMs:
-
+Let $y_1 = x_1 + x_2$
 $$m\\ddot{y}_1 = -ky_1 \\implies \\omega_1 = \\sqrt{k/m}$$
 
-- Let $y_2 = x_1 - x_2$ (Relative mode). Subtracting the EOMs:
+Let $y_2 = x_1 - x_2$
 
 $$m\\ddot{y}_2 = -(k + 2\\kappa)y_2 \\implies \\omega_2 = \\sqrt{(k + 2\\kappa)/m}$$
 
-Initial conditions imply $y_1(0) = a$ and $y_2(0) = a$. Reconstructing the positions:
+Initial conditions imply $y_1(0) = a$ and $y_2(0) = a$.
 
 $$x_1(t) = \\frac{1}{2}(y_1 + y_2) = \\frac{a}{2}(\\cos(\\omega_1 t) + \\cos(\\omega_2 t))$$
 
-Using sum-to-product identities and defining $\\epsilon \\approx \\omega_1(\\kappa / 2k)$:
+$\\epsilon \\approx \\omega_1(\\kappa / 2k)$:
 
 $$\\boxed{x_1(t) \\approx a\\cos((\\omega + \\epsilon)t)\\cos(\\epsilon t)}$$
 
@@ -1093,16 +1089,6 @@ $$\\prod_{n=2}^{\\infty} \\left(\\frac{n^3 - 1}{n^3 + 1}\\right)$$
     "category": "Physics",
 
     "content": "### Fundamental Molecular Interactions\n\nMolecular dynamics simulations rely on governing equations to define how neutral atoms interact. The **Lennard-Jones (LJ) Potential** is the standard mathematical model used to approximate the potential energy between a pair of non-bonding particles as a function of their separation distance.\n\n### The Line Array Model\n\nImplementing a **Line Array** initialization serves as a controlled environment for observing fundamental physical properties. By constraining particles to a single dimension, it becomes possible to isolate and analyze specific phenomena such as **longitudinal phonons** (lattice vibrations) and **thermal expansion** without the stochastic interference present in 3D systems. This configuration transforms complex interatomic behavior into a measurable, linear system.\n\n### Theoretical Framework\n\nThe Lennard-Jones potential accounts for two primary forces:\n\n1.  **Pauli Repulsion ($1/r^{12}$):** At short ranges, the overlap of electron orbitals creates a steep repulsive barrier, preventing particle collapse.\n2.  **Van der Waals Attraction ($1/r^6$):** At moderate distances, induced dipole-dipole interactions create an attractive force that facilitates the formation of condensed phases.\n\nThe interaction is defined by the following equation:\n\n$$V(r) = 4\\epsilon \\left[ \\left( \\frac{\\sigma}{r} \\right)^{12} - \\left( \\frac{\\sigma}{r} \\right)^6 \\right]$$\n\n<div style=\"text-align: center; margin: 25px 0;\">\n  <img src=\"https://python-code-aws.trinket.io/python-generated/w71mico1/lennard_jones_simulation.gif\" alt=\"Lennard-Jones Line Array Simulation\" style=\"max-width: 100%; border-radius: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);\" />\n  <p style=\"font-size: 0.85em; color: #555; margin-top: 10px;\"><em>Figure 1: Numerical simulation of a 1D atomic chain undergoing thermal oscillation within the LJ potential well.</em></p>\n</div>\n\n### Numerical Implementation\n\nThe simulation utilizes **Velocity Verlet Integration** to compute the trajectories of the particles. This method is preferred over standard Euler integration because it is a symplectic integrator, offering significantly better energy conservation over long-duration simulations. This stability is essential for observing the natural vibrational modes of the array.\n\nIn this implementation, particles are initially positioned at the equilibrium distance ($r \\approx 1.12\\sigma$), where the net force is zero. By introducing small velocity perturbations to simulate thermal energy, the array demonstrates how kinetic energy propagates through a medium at the microscopic scale."
-  },
-  {
-    "slug": "gauss-electromagnetic-flux",
-    "title": "Gauss's Law 3D Simulation",
-    "excerpt": "An interactive 3D visualization of Gauss's Law.",
-    "date": "2026-03-01",
-    "readTime": "4 min read",
-    "category": "Physics",
-    "content": "### Gauss's Law\n\nOne of Maxwell's four fundamental equations, **Gauss's Law** states that the total electric flux through any closed surface is proportional to the total electric charge enclosed within that surface. It is expressed as:\n\n$$\\oint \\mathbf{E} \\cdot d\\mathbf{A} = \\frac{Q_{enc}}{\\varepsilon_0}$$\n\nWhere $\\varepsilon_0 = 8.854 \\times 10^{-12}$ F/m is the permittivity of free space.\n\n### The Gaussian Surface\n\nA **Gaussian surface** is an imaginary closed surface used as a mathematical tool to evaluate the flux integral. The key insight is that the total flux is **independent of the size or shape** of the surface, it depends only on the enclosed charge $Q_{enc}$. This makes Gauss's Law particularly powerful for calculating electric fields in systems with high symmetry.\n\n### Electric Field Lines\n\nElectric field lines visualize the direction and magnitude of the electric field:\n\n1. **Positive charges** act as sources, field lines radiate outward in all directions.\n2. **Negative charges** act as sinks, field lines converge inward from all directions.\n\nThe density of field lines passing through the Gaussian surface is directly proportional to the enclosed charge.\n\n### Interactive Simulation\n\nThe simulation below allows you to explore Gauss's Law in real time. (This simulation is NOT made by me) Adjust the charge magnitude, toggle between positive and negative charges, and resize the Gaussian surface to observe how flux responds.\n\n<div style=\"width: 100%; height: 600px; margin: 25px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.2);\">\n  <iframe src=\"/gauss_flux_simulation.html\" style=\"width: 100%; height: 100%; border: none;\" />\n</div>\n\n<p style=\"font-size: 0.85em; color: #555; text-align: center; margin-top: -15px;\"><em>Figure 1: Interactive 3D simulation of electric flux through a Gaussian surface. Drag to rotate, scroll to zoom.</em></p>\""
-
   },
   {
     "slug": "bernoulli-equation-and-continuity",
