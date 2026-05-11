@@ -4,6 +4,7 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { getPostBySlug, getAllPosts } from "@/lib/blog-data"
 import { ArticleContent } from "@/components/article-content"
+import { ArticlePageWrapper } from "@/components/article-page-wrapper"
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -34,8 +35,9 @@ export default async function ArticlePage({ params }: PageProps) {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-6">
-      {/* Back Link */}
+    <ArticlePageWrapper>
+      <div className="mx-auto max-w-3xl px-6">
+        {/* Back Link */}
       <div className="pt-8">
         <Link
           href="/blog"
@@ -87,6 +89,7 @@ export default async function ArticlePage({ params }: PageProps) {
           Share on X
         </a>
       </div>
-    </div>
+      </div>
+    </ArticlePageWrapper>
   )
 }
