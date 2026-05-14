@@ -14,7 +14,7 @@ export const posts: BlogPost[] = [
     title: "Vieta's Theorem",
     excerpt:
       "An introduction to Vieta's Theorem",
-    date: "2026-02-20",
+    date: "February 20, 2026",
     readTime: "8 min read",
     category: "Math",
     content: `## 1. Definition
@@ -123,7 +123,7 @@ $$\\frac{S_1}{S_2} = \\frac{-\\frac{2004}{2003}}{\\frac{2004}{2003}} = -1$$
     title: "Sums",
     excerpt:
       "An introduction to a mathematical notation and some techniques",
-    date: "2026-02-28",
+    date: "February 28, 2026",
     readTime: "20 min read",
     category: "Math",
     content: `## A Note To The Reader

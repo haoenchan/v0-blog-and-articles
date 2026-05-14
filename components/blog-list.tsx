@@ -1,8 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useState, useMemo } from "react"
-import { ArrowUpRight } from "lucide-react"
+import { useState } from "react"
 import type { BlogPost } from "@/lib/blog-data"
 import { cn } from "@/lib/utils"
 
@@ -12,17 +11,14 @@ interface BlogListProps {
 
 const categories = ["All", "Math", "Physics", "Misc"]
 
+const categoryStyles: Record<string, string> = {
+  Math:    "bg-primary/10 text-primary",
+  Physics: "bg-primary/10 text-primary",
+  Misc:    "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
+}
+
 export function BlogList({ posts }: BlogListProps) {
   const [activeCategory, setActiveCategory] = useState("All")
-
-  // Count posts per category
-  const categoryCounts = useMemo(() => {
-    const counts: Record<string, number> = { All: posts.length }
-    for (const cat of categories.slice(1)) {
-      counts[cat] = posts.filter((p) => p.category === cat).length
-    }
-    return counts
-  }, [posts])
 
   const filteredPosts =
     activeCategory === "All"
@@ -32,64 +28,71 @@ export function BlogList({ posts }: BlogListProps) {
   return (
     <section className="py-8">
       {/* Category Filter */}
-      <div className="flex flex-wrap items-center gap-3 pb-8">
+      <div className="flex items-center gap-4 pb-8">
         {categories.map((category) => (
           <button
             key={category}
             onClick={() => setActiveCategory(category)}
             className={cn(
-              "filter-chip",
-              activeCategory === category && "filter-chip--active"
+              "rounded-md px-3 py-1.5 text-sm transition-colors",
+              activeCategory === category
+                ? "bg-primary text-primary-foreground font-medium"
+                : "bg-secondary text-muted-foreground hover:bg-primary/10 hover:text-primary"
             )}
           >
             {category}
-            <span className="filter-chip__count">{categoryCounts[category]}</span>
           </button>
         ))}
       </div>
 
-      {/* Posts - Numbered List Style */}
-      <ul className="article-list article-list--numbered">
-        {filteredPosts.map((post, index) => {
-          const num = String(index + 1).padStart(2, "0")
-          return (
-            <li key={post.slug} className="article-row-reveal">
-              <Link
-                href={`/blog/${post.slug}`}
-                className="article-row"
+      {/* Posts */}
+      <div className="flex flex-col">
+        {filteredPosts.map((post, index) => (
+          <Link
+            key={post.slug}
+            href={`/blog/${post.slug}`}
+            className="group"
+          >
+            <article
+              className={cn(
+                "flex flex-col gap-2 py-6",
+                post.category === "Misc" &&
+                  "rounded-lg border border-amber-200 bg-amber-50/50 px-4 my-2 dark:border-amber-800/40 dark:bg-amber-900/10",
+                index !== filteredPosts.length - 1 &&
+                  post.category !== "Misc" &&
+                  "border-b border-border"
+              )}
+            >
+              <div className="flex items-center gap-3 text-sm">
+                <span
+                  className={cn(
+                    "rounded-md px-2 py-0.5 text-xs font-medium",
+                    categoryStyles[post.category] ?? "bg-primary/10 text-primary"
+                  )}
+                >
+                  {post.category}
+                </span>
+                <time className="text-muted-foreground">{post.date}</time>
+                <span className="text-border">{"/"}</span>
+                <span className="text-muted-foreground">{post.readTime}</span>
+              </div>
+              <h2
+                className={cn(
+                  "font-serif text-xl font-semibold transition-colors sm:text-2xl",
+                  post.category === "Misc"
+                    ? "text-amber-900 group-hover:text-amber-600 dark:text-amber-200 dark:group-hover:text-amber-400"
+                    : "text-foreground group-hover:text-primary"
+                )}
               >
-                {/* Number column */}
-                <div className="article-row__num-col">
-                  <span className="article-row__num">
-                    <em>{num}</em>
-                  </span>
-                </div>
-
-                {/* Meta column */}
-                <div className="article-row__meta-col">
-                  <span className="article-row__cat">{post.category}</span>
-                  <time className="article-row__date" dateTime={post.date}>
-                    {post.date}
-                  </time>
-                  <span className="article-row__read">{post.readTime}</span>
-                </div>
-
-                {/* Body column */}
-                <div className="article-row__body">
-                  <h3 className="article-row__title">
-                    <span className="article-row__title-text">{post.title}</span>
-                    <ArrowUpRight className="article-row__arrow h-4 w-4" />
-                  </h3>
-                  <p className="article-row__excerpt">{post.excerpt}</p>
-                </div>
-
-                {/* Hover rule */}
-                <span className="article-row__hover-rule" aria-hidden="true" />
-              </Link>
-            </li>
-          )
-        })}
-      </ul>
+                {post.title}
+              </h2>
+              <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+                {post.excerpt}
+              </p>
+            </article>
+          </Link>
+        ))}
+      </div>
 
       {filteredPosts.length === 0 && (
         <p className="py-12 text-center text-muted-foreground">

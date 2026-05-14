@@ -70,18 +70,6 @@ export function ArticleContent({ content }: ArticleContentProps) {
             )
           }
 
-          // Raw HTML block (figures, iframes) — don't wrap in <p>
-          if (trimmed.startsWith("<")) {
-            const html = renderMath(trimmed)
-            return (
-              <div
-                key={index}
-                className="article-body__figure"
-                dangerouslySetInnerHTML={{ __html: html }}
-              />
-            )
-          }
-
           // Display math block (standalone $$ ... $$)
           if (trimmed.startsWith("$$") && trimmed.endsWith("$$")) {
             const math = trimmed.slice(2, -2).trim()
@@ -90,7 +78,7 @@ export function ArticleContent({ content }: ArticleContentProps) {
               return (
                 <div
                   key={index}
-                  className="article-body__math my-2 text-center"
+                  className="my-2 overflow-x-auto text-center"
                   dangerouslySetInnerHTML={{ __html: html }}
                 />
               )
