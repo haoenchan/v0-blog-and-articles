@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react"
 import { getPostBySlug, getAllPosts } from "@/lib/blog-data"
 import { ArticleContent } from "@/components/article-content"
 import { ArticlePageWrapper } from "@/components/article-page-wrapper"
+import { BackToTop } from "@/components/back-to-top"
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -90,6 +91,7 @@ export default async function ArticlePage({ params }: PageProps) {
         </a>
       </div>
       </div>
+      <BackToTop />
     </ArticlePageWrapper>
   )
 }

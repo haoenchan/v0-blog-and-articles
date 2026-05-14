@@ -1,0 +1,229 @@
+/* ============================================================
+   Haoenchan Design System — Colors & Type
+   Personal math/physics blog. Dark-mode-first, serif headlines,
+   sans-serif body, cyan/teal primary, rainbow gradient accents.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Geist+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ---------- BACKGROUND / SURFACE (DARK) ---------- */
+  --background:    oklch(0.06 0.005 220);   /* near-black with hint of blue */
+  --foreground:    oklch(0.93 0.005 200);   /* off-white, faint cyan tilt */
+  --card:          oklch(0.12 0.01 220);    /* surface 1 */
+  --card-50:       oklch(0.12 0.01 220 / 0.5);   /* glassy surface */
+  --sidebar:       oklch(0.08 0.005 220);   /* surface 0 */
+  --popover:       oklch(0.12 0.01 220);
+
+  /* ---------- SECONDARY / MUTED ---------- */
+  --secondary:     oklch(0.16 0.01 220);
+  --muted:         oklch(0.16 0.01 220);
+  --muted-foreground: oklch(0.70 0.01 200);
+  --border:        oklch(0.20 0.01 220);
+  --border-soft:   oklch(0.20 0.01 220 / 0.3);
+  --input:         oklch(0.20 0.01 220);
+
+  /* ---------- BRAND ---------- */
+  --primary:       oklch(0.72 0.14 200);   /* sky-cyan, ~#38bdf8 */
+  --primary-soft:  oklch(0.72 0.14 200 / 0.10);
+  --primary-foreground: oklch(0.06 0.005 220);
+  --accent:        oklch(0.72 0.18 175);   /* tealer / "minty" accent */
+  --accent-foreground: oklch(0.06 0.005 220);
+  --ring:          oklch(0.72 0.14 200);
+
+  /* ---------- SEMANTIC / RAINBOW ---------- */
+  --destructive:   oklch(0.577 0.245 27.325);
+  --rainbow-red:    #f87171;
+  --rainbow-orange: #fb923c;
+  --rainbow-yellow: #facc15;
+  --rainbow-green:  #4ade80;
+  --rainbow-sky:    #38bdf8;
+  --rainbow-purple: #a78bfa;
+
+  /* Category colors (badges) */
+  --cat-math-bg:    oklch(0.72 0.14 200 / 0.10);
+  --cat-math-fg:    oklch(0.72 0.14 200);
+  --cat-physics-bg: oklch(0.72 0.14 200 / 0.10);
+  --cat-physics-fg: oklch(0.72 0.14 200);
+  --cat-misc-bg:    oklch(0.30 0.08 70 / 0.30);
+  --cat-misc-fg:    oklch(0.78 0.12 75);
+
+  /* Charts (also used for data viz / formula highlights) */
+  --chart-1: oklch(0.72 0.18 175);
+  --chart-2: oklch(0.72 0.14 200);
+  --chart-3: oklch(0.65 0.10 250);
+  --chart-4: oklch(0.70 0.15 170);
+  --chart-5: oklch(0.60 0.08 200);
+
+  /* ---------- TYPOGRAPHY ---------- */
+  --font-sans:  'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Playfair Display', 'Georgia', ui-serif, serif;
+  --font-mono:  'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ---------- RADII / ELEVATION ---------- */
+  --radius:      0.625rem;       /* 10px — base */
+  --radius-sm:   calc(var(--radius) - 4px);   /* 6px — chips, inputs */
+  --radius-md:   calc(var(--radius) - 2px);   /* 8px — buttons */
+  --radius-lg:   var(--radius);                /* 10px — cards */
+  --radius-xl:   calc(var(--radius) + 4px);    /* 14px — hero cards */
+  --radius-full: 9999px;
+
+  /* Glassy / glow shadows (very subtle — dark UI) */
+  --shadow-xs:   0 1px 2px rgba(0,0,0,0.4);
+  --shadow-sm:   0 1px 20px rgba(0,0,0,0.4);
+  --shadow-card: 0 0 40px rgba(0,0,0,0.3);
+  --shadow-glow: 0 0 30px rgba(56,189,248,0.10);
+  --shadow-glow-strong: 0 0 60px rgba(56,189,248,0.18);
+
+  /* ---------- SPACING (4px scale) ---------- */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* Reading width — articles cap here */
+  --max-w-prose: 48rem;       /* max-w-3xl */
+}
+
+/* ============================================================
+   SEMANTIC TYPE STYLES
+   ============================================================ */
+
+.h-display {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(2.75rem, 5vw, 3.75rem);   /* 44–60px */
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.h1 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 4vw, 3rem);       /* 36–48px */
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.h2 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.5rem;                          /* 24px */
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+.h3 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.25rem;                         /* 20px */
+  color: var(--foreground);
+}
+
+.h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.125rem;                        /* 18px */
+  color: var(--foreground);
+}
+
+.lead {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;                        /* 18px */
+  line-height: 1.65;
+  color: oklch(0.93 0.005 200 / 0.75);
+}
+
+.p, p.body {
+  font-family: var(--font-sans);
+  font-size: 1rem;                            /* 16px */
+  line-height: 1.65;
+  color: oklch(0.93 0.005 200 / 0.80);
+}
+
+.small, .caption {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;                        /* 14px */
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;                         /* 12px */
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.code, code, kbd {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+/* Rainbow gradient text — used for the hero accent word ("Me", "Articles") */
+.text-rainbow {
+  background: conic-gradient(from 180deg,
+    var(--rainbow-red), var(--rainbow-orange), var(--rainbow-yellow),
+    var(--rainbow-green), var(--rainbow-sky), var(--rainbow-purple),
+    var(--rainbow-red));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-rainbow-linear {
+  background: linear-gradient(90deg,
+    var(--rainbow-red), var(--rainbow-yellow),
+    var(--rainbow-green), var(--rainbow-sky), var(--rainbow-purple));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Faint gradient divider — used between sections */
+.divider-fade {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border) 50%, transparent);
+}
+
+/* Glass card — for blog post tiles */
+.card-glass {
+  background: var(--card-50);
+  border-radius: var(--radius-xl);
+  box-shadow: inset 0 0 0 1px var(--border-soft);
+  backdrop-filter: blur(6px);
+}
+
+/* Tag chip on home hero ("Math & Physics" w/ sparkle) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--card);
+  box-shadow: inset 0 0 0 1px var(--border-soft);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* Selection */
+::selection { background: rgba(56,189,248,0.25); color: #7dd3fc; }
